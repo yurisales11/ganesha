@@ -4,7 +4,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 50%;
+  top: 38%;
   transform: translateY(-50%);
 }
 
@@ -17,11 +17,71 @@
   font-size: 16px;
   line-height: 22px;
 
-  color: #8c8c8c;
+  color: #ffffff;
 
   margin: 0;
 }
 
+
+#container h1 {color: white;
+font-size: 2rem;
+font-family: "",;
+  font-optical-sizing: auto;
+  font-weight: weight
+ }
+
 #container a {
   text-decoration: none;
 }
+
+.copyhome{background-color: red;
+  ;
+}
+
+
+#body{color: red;
+background-color: red;}
+
+
+
+
+
+.pagebackground {
+  background-image: url(/assets/GANESHAhome.png);
+  background-size: cover; /* Para a imagem cobrir todo o espaço */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita repetição da imagem */
+  height: 100vh; /* Para garantir que a imagem cubra toda a altura da tela */
+  width: 100vw; /* Para garantir que a imagem cubra toda a largura da tela */
+}
+
+.ionbutton{
+display: flex;
+max-width: 100%;
+flex-direction: column;
+justify-content: center;
+align-items: center;}
+
+button {border-radius: 85px;}
+
+.criarconta{color: rgb(219, 219, 219);
+  padding: 5px 5px;
+  font-size: 1.3rem;
+  text-transform: none;
+  margin-top: 140%;
+  border-radius: 100%;
+width: 80%;}
+
+
+.descriptionlogin{color: white;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 1%;
+
+}
+
+a{text-decoration: none;}
+
+
+

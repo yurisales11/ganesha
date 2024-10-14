@@ -1,0 +1,46 @@
+.pagebackground {
+    background-image: url(/assets/Login.png);
+    background-size: cover; /* Para a imagem cobrir todo o espaço */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita repetição da imagem */
+    height: 100vh; /* Para garantir que a imagem cubra toda a altura da tela */
+    width: 100vw; /* Para garantir que a imagem cubra toda a largura da tela */
+  }
+  
+
+  
+  .ionbutton{
+  display: flex;
+  max-width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;}
+  
+  button {border-radius: 85px;}
+  
+  .criarconta{color: rgb(219, 219, 219);
+    padding: 5px 5px;
+    font-size: 1.3rem;
+    text-transform: none;
+    margin-top: 80%;
+    border-radius: 100%;
+  width: 80%;}
+  
+  
+  .descriptionlogin{color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+  
+  }
+
+
+  .custom-input{background-color: rgb(255, 255, 255);}
+
+.custom-input ion-input{margin-top: 0%;
+display: flex;
+gap: 5%;}
+  
+  a{text-decoration: none;}
+  

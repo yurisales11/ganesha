@@ -35,3 +35,11 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+
+// Alterar a cor do botão primário globalmente
+:root {
+    --ion-color-primary: #29b63e; /* Cor personalizada */
+    --ion-color-primary-contrast: #ffffff; /* Cor do texto em contraste */
+  }
+
