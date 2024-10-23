@@ -43,3 +43,37 @@
     --ion-color-primary-contrast: #ffffff; /* Cor do texto em contraste */
   }
 
+
+  ion-datetime {
+    --padding-start: 0px;
+    --min-height: 30px;
+    --background: transparent !important;
+    --color: var(--ion-color-dark); /* Ajusta a cor do texto */
+  }
+  
+  ion-label {
+    font-size: 12px; /* Reduz o tamanho do rótulo */
+    color: var(--ion-color-medium); /* Define uma cor mais suave */
+  }
+  
+
+  ion-content{--background: #171a21}
+
+  .dark-alert {
+    --background: #ff0000; /* Cor de fundo escura */
+    --ion-color-primary: #0a84ff; /* Cor do botão */
+    --ion-color-secondary: #ff2d55; /* Cor secundária */
+    --ion-color-tertiary: #ffcc00; /* Cor terciária */
+  
+    /* Cores do texto */
+    --ion-text-color: #ffffff; /* Cor padrão do texto */
+    --ion-color-light: #ffffff; /* Para texto claro (geralmente usado nos botões) */
+    --ion-color-dark: #000000; /* Para texto escuro, se necessário */
+  
+    /* Especificando para inputs e botões */
+    --ion-color-button: #ffffff; /* Cor do texto dos botões */
+    --ion-color-input:
+    --ion-color-label: #ffffff; /* Cor do texto dos inputs */
+  }
+
+  .custom-label{color: white;}

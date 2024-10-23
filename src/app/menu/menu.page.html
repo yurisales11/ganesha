@@ -1,12 +1,197 @@
-<ion-content [fullscreen]="true">
-  
+<ion-content>
 
   
-  <div class = imgback>
-    
-    <img src="assets/menu.png" alt="">
-    
+
+<ion-card color="dark">
+  <div class = headerconvidado>
+    <ion-chip>
+      <ion-avatar>
+        <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      </ion-avatar>
+      <ion-label color = light id = nameavatar>Convidado</ion-label>
+    </ion-chip>
+
   </div>
+  <ion-card-header>
+    <ion-item lines="none" class="date-selector" color="dark">
+      <ion-icon name="chevron-back-outline" class="nav-icon" (click)="previousMonth()"color="light"></ion-icon>
+      
+      <ion-label class="month-year-label" color="light">{{ mesSelecionado | date: 'MMMM yyyy' }}</ion-label>
+      
+      <ion-icon name="chevron-forward-outline" class="nav-icon" (click)="nextMonth()"color="light"></ion-icon>
+    </ion-item>
+  </ion-card-header>
+
+ <!-- Saldo Atual -->
+  <div class = containersaldo>
+    <div class = saldoatual color = dark>  
+  <ion-item color = 'dark' class =itemsaldoatual>
+    <div class =labelsaldo>
+   
+      <ion-label>Saldo Inicial:</ion-label>
+      <ion-label>R$</ion-label>
+    </div>
+
+    <ion-input type="number" [(ngModel)]="saldoAtual" placeholder=" Insira seu saldo"></ion-input>
+
+  
  
+</ion-item>
+  </div>
+
+<!-- Saldo Previsto (calculado) -->
+<div class="saldoatual">
+  <ion-item color="dark" class="projeção">
+    <div class="labelsaldoo">
+      <ion-label>Saldo Previsto:</ion-label>
+      <ion-label>R$</ion-label>
+    </div>
+    <ion-label class="inputsaldo" [ngClass]="{'text-danger': calcularSaldoPrevisto() < 0}">
+      {{  calcularSaldoPrevisto()  }}
+    </ion-label>
+  </ion-item>
+</div>
+
+
+</div>
+</ion-card>
+
+
+
+
+
+
+
+<div class="ion-padding">
+  <!-- Despesas -->
+  <ion-card color="dark">
+    <ion-card-header>
+      <div class="conteudodespesas">
+        <ion-icon name="arrow-down-outline" style="color: red; font-size: 24px;"></ion-icon>
+        <ion-card-title>Despesas</ion-card-title>
+        <ion-icon name="chevron-forward-outline" class="nav-icon"></ion-icon>
+      </div>
+    </ion-card-header>
+    <ion-card-content>
+      
+      <!-- Loop para exibir cada despesa -->
+      <ion-item *ngFor="let despesa of despesas; let i = index" color="dark">
+        <div class="itemdespesa">
+          <ion-label>{{ despesa.nome }}</ion-label>
+          <ion-label type="number">{{ despesa.valor | currency:'BRL':'symbol':'1.2-2' }}</ion-label>
+        </div>
+        <ion-button (click)="excluirDespesa(i)" slot="end" color="danger">Excluir</ion-button>
+      </ion-item>
+  
+      <!-- Total de despesas -->
+      <div class="total-despesas">
+        <strong>Total Despesas: </strong><ion-label color = light  [ngClass]="{'text-danger': calcularTotalDespesas() > 0}">{{ calcularTotalDespesas() | currency:'BRL':'symbol':'1.2-2'   }}</ion-label>
+      </div>
+  
+      <!-- Botão para adicionar nova despesa -->
+      <ion-button expand="block" (click)="adicionarDespesa()" class="buttonmenu">Adicionar Despesa</ion-button>
+  
+    </ion-card-content>
+  </ion-card>
+  
+  <!-- Receitas -->
+  <ion-card color="dark">
+    <ion-card-header>
+      <div class="conteudodespesas">
+        <ion-icon name="arrow-up-outline" style="color: rgb(0, 255, 26); font-size: 24px;"></ion-icon>
+        <ion-card-title>Receitas</ion-card-title>
+        <ion-icon name="chevron-forward-outline" class="nav-icon"></ion-icon>
+      </div>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item *ngFor="let receita of receitas; let i = index" color="dark">
+        <div class="itemdespesa">
+          <ion-label>{{ receita.nome }}</ion-label>
+          <ion-label type="number">{{ receita.valor | currency:'BRL':'symbol':'1.2-2' }}</ion-label>
+        </div>
+        <ion-button (click)="excluirReceita(i)" slot="end" color="danger">Excluir</ion-button>
+      </ion-item>
+  
+      <!-- Total de receitas -->
+      <div class="total-receitas">
+      <strong>Total Receitas:</strong><ion-label color = light [ngClass]="{'text-green': calcularTotalReceitas() > 0}"> {{ calcularTotalReceitas() | currency:'BRL':'symbol':'1.2-2' }}</ion-label>
+      </div>
+  
+      <ion-button expand="block" (click)="adicionarReceita()" class="buttonmenu">Adicionar Receita</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+
+
+  <ion-card color = dark>
+    <ion-card-header>
+      <div class="conteudodespesas">
+        <ion-icon name="calendar-outline" style="color: rgb(255, 255, 255); font-size: 24px;"></ion-icon>
+        <ion-card-title>Planejamento</ion-card-title>
+        <ion-icon name="chevron-forward-outline" class="nav-icon"></ion-icon>
+        </div>
+    </ion-card-header>
+    <ion-card-content >
+     
+      <ion-item *ngFor="let category of categories; let i = index" color="dark">
+        <div class="itemplanejamento">
+          <ion-label>{{ category.label }}</ion-label>
+          <div class="progress-container">
+            <!-- Barra de progresso com o texto "Saldo Restante" ou "Sobrando" -->
+            <ion-progress-bar [value]="category.progress / 100" class="custom-progress-bar"></ion-progress-bar>
+            <span class="progress-text">
+              <!-- Verificação: Se o saldo atual for maior que o valor alvo -->
+              <ng-container *ngIf="category.currentBalance <= category.targetValue; else sobrandoText">
+                Saldo Restante:  {{ category.targetValue - category.currentBalance | currency: 'BRL':'symbol':'1.2-2' }}
+              </ng-container>
+              <!-- Caso contrário, exibe "Sobrando" -->
+              <ng-template #sobrandoText>
+                Sobrando:  {{ category.currentBalance - category.targetValue | currency: 'BRL':'symbol':'1.2-2' }}
+              </ng-template>
+            </span>
+          </div>
+        </div>
+        
+        <div class="btnplanejamento">
+          <ion-button (click)="presentEditAlert(i)" slot="end">Editar</ion-button>
+          <ion-button (click)="categories.splice(i, 1)" slot="end" color="danger">Excluir</ion-button>
+        </div>
+      </ion-item>
+      
+      <ion-button (click)="adicionarCategoria()" expand="block" class="buttonmenu">Adicionar Planejamento</ion-button>
+      
+      
+      </ion-card-content>
+  </ion-card>
+  
+  
+</div>
+
+  
+  
+
+
+
+
+<ion-footer>
+  <ion-toolbar class="custom-footer-toolbar">
+    <ion-segment class="custom-segment">
+      <ion-segment-button value="filmes" class="custom-segment-button" routerLink="/artigos">
+          <ion-icon name="wallet-outline"></ion-icon>
+        <ion-label class="custom-label">Artigos</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="futebol" class="custom-segment-button"routerLink="/login" >
+          <ion-icon name="person-outline"></ion-icon>
+        <ion-label class="custom-label">Login</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="noticias" class="custom-segment-button" routerLink="/cadastro" >
+          <ion-icon name="person-add-outline"></ion-icon>
+        <ion-label class="custom-label">Cadastro</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>
 
 </ion-content>

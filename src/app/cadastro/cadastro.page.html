@@ -7,11 +7,43 @@
 
   <div class = pagebackground> 
 
-    
+    <div class="login-container">
+      <ion-card>
+        
+        <ion-card-content>
+          <!-- Input de Login -->
+          <ion-input class = inputloginborda
+            label="Digite seu login"
+            labelPlacement="floating"
+            type="text"
+            class="white-input"
+            required
+          ></ion-input>
+  
+          <!-- Input de Senha -->
+          <ion-input
+            label="Digite sua senha"
+            labelPlacement="floating"
+            type="password"
+            class="white-input"
+            required
+          ></ion-input>
 
-    <div class = ionbutton>
-    <ion-button class = criarconta color="primary" routerLink="/menu">Criar uma Conta</ion-button>        
-    </div>
+            <!-- Input de Senha -->
+            <ion-input
+            label="Confirme sua senha"
+            labelPlacement="floating"
+            type="password"
+            class="white-input"
+            required
+          ></ion-input>
+  
+          <!-- Botão de Login -->
+          <ion-button expand="block" class="login-button" routerLink="/menu">Cadastrar</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div> 
+
    
 
    
@@ -19,3 +51,25 @@
  
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar class="custom-footer-toolbar">
+    <ion-segment class="custom-segment">
+      <ion-segment-button value="filmes" class="custom-segment-button" routerLink="/menu">
+          <ion-icon name="wallet-outline"></ion-icon>
+        <ion-label class="custom-label">Convidado</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="futebol" class="custom-segment-button"routerLink="/login" >
+          <ion-icon name="person-outline"></ion-icon>
+        <ion-label class="custom-label">Login</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="noticias" class="custom-segment-button" routerLink="/cadastro" >
+          <ion-icon name="person-add-outline"></ion-icon>
+        <ion-label class="custom-label">Cadastro</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>
+

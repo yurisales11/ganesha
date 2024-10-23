@@ -1,0 +1,151 @@
+
+.custom-footer-toolbar {
+    --background: #191919; /* Cor de fundo da toolbar */
+    --color: #ffffff; /*Cor dos ícones e texto */
+    --padding-start: 0; /* Remove padding desnecessário */
+    --padding-end: 0; /* Remove padding desnecessário */
+    --height: 0px; /* Diminuir a altura do footer */
+  }
+  
+  .custom-segment {
+    --background: red /* Cor de fundo do segmento */
+    --color: #1a237e; /* Cor dos ícones e texto do segmento */
+    --indicator-color: #ffffff; /* Cor do indicador ativo */
+  }
+  
+  .custom-segment-button {
+    --background: transparent; 
+     text-transform: none;/* Fundo transparente para os botões */
+    --color: #ffffff; /* Cor do texto dos botões */
+    --padding: 0; /* Remove padding interno dos botões */
+    --border: none; /* Remove borda dos botões */
+    display: flex;
+    flex-direction: column; /* Organiza ícones e labels em coluna */
+    align-items: center; /* Alinha ícones e labels ao centro horizontalmente */
+    justify-content: center; /* Alinha ícones e labels ao centro verticalmente **/
+  }
+  
+  .custom-icon {
+    font-size: 20px; /* Tamanho do ícone diminuído */
+  }
+  
+  .custom-label {
+    font-family: 'Roboto', sans-serif; /* Fonte personalizada para o texto */
+    font-size: 10px; /* Tamanho da fonte diminuído para o texto */
+    margin-top: 2px; /* Espaçamento reduzido entre ícone e texto */
+  }
+
+  ion-card-title{
+  display: flex;
+justify-content: center;}
+
+.date-selector{
+display: flex;
+justify-content: center;}
+
+.month-year-label{
+display: flex;
+justify-content: center;}
+
+ion-alert {
+  backdrop-filter: none !important; /* Remove o efeito de desfoque */
+}
+ 
+.inputsaldoo{}
+
+.containerfluxodecaixa{display: flex;
+  max-width: 100%;}
+
+.conteudodespesas{display: flex;
+justify-content: space-between;
+align-items: center;
+max-width: 100%;}
+
+.itemdespesa{
+
+display: flex;
+max-width: 100%;
+width: 100%;
+height: 100%;
+align-items: center;
+justify-content: center;
+gap: 10%;
+
+}
+
+.labelsaldo{display: flex;
+
+max-width: 100%;
+width: 100%;
+justify-content: space-between;}
+
+.labelsaldoo{
+  
+  max-width: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.projeção{
+max-width: 100%;
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;}
+
+.itemplanejamento{
+  display: flex;
+ 
+
+ justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.btnplanejamento{
+  display: flex;
+  flex-direction: column;
+}
+
+.headerconvidado {display: flex;
+width: 100%;
+justify-content: center;
+align-items: center;
+
+height: 100%;
+}
+
+#nameavatar{font-size: 1.2rem;
+}
+
+
+
+
+
+.buttonmenu{
+  --background:#29b63e  ; /* Remove o fundo */
+  color: rgb(255, 255, 255); /* Cor do texto verde */
+  --border-radius: 8px; /* Borda arredondada opcional */
+  font-size: 16px; /* Tamanho da fonte opcional */
+  transition: background 0.3s, color 0.3s; /* Transições para efeito de hover */
+  text-transform: none;
+}
+
+
+.text-danger{color: red;}
+
+.text-green{color: rgb(71, 241, 20);}
+
+.progress-text{font-size: 0.8rem;}
+
+
+
+
+
+
+
+
+
