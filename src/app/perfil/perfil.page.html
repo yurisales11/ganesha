@@ -1,0 +1,86 @@
+
+
+<ion-content class="background-dark">
+  <div class="pagebackground">
+    <div class="settings-container">
+      <!-- Avatar -->
+      <div class="profile-section">
+        <ion-avatar aria-hidden="true" slot="start" (click)="selecionarImagem()">
+          <img alt="Avatar" [src]="fotoAvatar || 'https://github.com/shadcn.png'" />
+        </ion-avatar>
+        <input
+          type="file"
+          accept="image/*"
+          id="uploadAvatar"
+          style="display: none;"
+          (change)="atualizarAvatar($event)"
+        />
+         <div class="profile-info">
+        <!-- Nome do Usuário - Bem-vindo + nome do usuário -->
+      <ion-label>
+      <h2> {{ usuarioNome || 'Usuário' }}</h2>
+      </ion-label>
+        </div>
+        </div>
+     
+      
+
+      <ion-list lines="full" class = background-dark>
+        <!-- País -->
+        <ion-item class="custom-input " >
+          <ion-label position="stacked">País</ion-label>
+          <ion-input [(ngModel)]="pais" placeholder="Digite seu país"></ion-input>
+        </ion-item>
+
+        <!-- Telefone -->
+        <ion-item class="custom-input"  >
+          <ion-label position="stacked">Telefone</ion-label>
+          <ion-input [(ngModel)]="telefone" type="tel" placeholder="Digite seu telefone"></ion-input>
+        </ion-item>
+
+        <!-- Email -->
+        <ion-item class="custom-input" >
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input [(ngModel)]="email" type="email" placeholder="Digite seu email"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <!-- Troca de Senha -->
+      <ion-item class="custom-input" routerLink ="/trocarsenha" >
+        <ion-label routerLink ="/trocarsenha">Trocar Senha</ion-label>
+        <ion-icon slot="end" name="key-outline" color ="light"></ion-icon>
+      </ion-item>
+     
+    </div>
+  </div>
+
+  <!-- Botão Salvar Alterações -->
+  <ion-button
+    expand="block"
+    class="buttonuser"
+    fill="outline"
+    (click)="salvarAlteracoes()"
+  >
+    Salvar alterações
+  </ion-button>
+</ion-content>
+
+
+
+<ion-footer color = dark>
+  <ion-toolbar class="custom-footer-toolbar">
+    <ion-segment class="custom-segment">
+      <ion-segment-button value="home" routerLink ="/usuario">
+        <ion-icon name="home-outline" color = light routerLink ="/usuario"></ion-icon>
+      </ion-segment-button>
+
+      <ion-segment-button value="add" routerLink ="/artigos">
+        <ion-icon name="add-circle-outline"color = light routerLink ="/artigos"></ion-icon>
+      </ion-segment-button>
+      
+      <ion-segment-button value="settings" routerLink ="/perfil">
+        <ion-icon name="settings-outline"color = light  routerLink ="/perfil"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,90 @@
+.background-dark {
+    --background: #121212;
+    color: #fff;
+  }
+  
+  .info-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: #ffffff;
+  }
+  
+  .info-container ion-icon {
+    font-size: 22px;
+  }
+  
+  .info-container a {
+    color: #00b33c;
+    text-decoration: none;
+  }
+  
+  .account-card {
+    background-color: #1d1d1d;
+    border-radius: 10px;
+    padding: 15px;
+  }
+  
+  .account-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   
+  }
+  
+  .account-icon ion-icon {
+    font-size: 40px;
+    color: white;
+  }
+  
+  .account-info h3 {
+    color: white;
+    margin: 0;
+    font-size: 16px;
+  }
+  
+  .account-info p {
+    margin: 0;
+    font-size: 12px;
+    color: #faf8f8;
+  }
+  
+  .account-action {
+    font-size: 18px;
+    color: #ffffff;
+  }
+  
+  .account-balance {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .account-balance .saldo-negativo {
+    color: red;
+   font-family:Arial, Helvetica, sans-serif;
+   font-weight: bold;
+  }
+  
+  .edit-icon {
+    color: #bcbcbc;
+    font-size: 18px;
+  }
+
+  .edit-icon, .delete-icon {
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .delete-icon {
+    color: rgb(255, 121, 121);
+  }
+  
+  .edit-icon {
+    color: rgb(248, 248, 248);
+  }
+  
+  

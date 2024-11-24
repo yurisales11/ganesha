@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar style="padding: 10px; background-color: #f4f4f4; border-bottom: 1px solid #ddd;">
+    <ion-item lines="none" style="display: flex; align-items: center;">
+      <!-- Avatar com upload de imagem -->
+      <ion-avatar
+        slot="start"
+        aria-hidden="true"
+      
+        (click)="selecionarImagem()"
+      >
+        <img
+          alt="Avatar"
+          [src]="fotoAvatar || 'https://github.com/shadcn.png'"
+        />
+      </ion-avatar>
+
+      <!-- Input invisível para upload de imagem -->
+      <input
+        type="file"
+        accept="image/*"
+        id="uploadAvatar"
+        style="display: none;"
+        (change)="atualizarAvatar($event)"
+      />
+
+      <ion-buttons slot="end" style="padding: 0px 20px;">
+        <ion-icon name="options" style="font-size: 24px; color: #ffffff;" routerLink="/perfil"></ion-icon>
+      </ion-buttons>
+      
+      <!-- Exemplo de texto ou espaço adicional ao lado do avatar -->
+      <div style="margin-left: 15px; flex-grow: 1;">
+        <h2 style="margin: 0; font-size: 16px; color: #333;">Seu Nome</h2>
+       
+      </div>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content [fullscreen]="true">
+  <div class="header">
+    <div class="bemvindo">
+      <div class="nome-container">
+        <h1>Olá, Rodrigo</h1>
+      </div>
+      <ion-button fill="clear" class="visibility-button">
+        <ion-icon name="eye-outline" class="icon-visibility"></ion-icon>
+      </ion-button>
+    </div>
+
+    <!-- Exibindo o saldo abaixo -->
+    <div class="saldo">
+      <h1>Saldo atual</h1>
+      <h2>R$ 100</h2>
+    </div>
+  </div>
+ 
+  <div class = card>
+    <h2>Receitas</h2>
+    <span>R$ 100</span>
+  </div>
+
+    <div class = card>
+      <h2>Despesas</h2>
+      <span>R$ 100</span>
+    </div>
+
+    <div class = "card planejamento">
+      <h2>Planejamentos</h2>
+      <div class = information>
+      <span>Educação</span>
+      <div class = barradeprogresso>
+        <ion-progress-bar [value]="50" class="custom-progress-bar"></ion-progress-bar>
+        <span>50%</span>
+      </div>
+      </div>
+
+      <div class = information>
+        <span>Viagem</span>
+        <div class = barradeprogresso>
+          <ion-progress-bar [value]="50" class="custom-progress-bar"></ion-progress-bar>
+          <span>50%</span>
+        </div>
+        </div>
+
+        <div class = information>
+          <span>Alimentação</span>
+          <div class = barradeprogresso>
+            <ion-progress-bar [value]="50" class="custom-progress-bar"></ion-progress-bar>
+            <span>50%</span>
+          </div>
+          </div>
+    </div>
+
+
+  
+
+
+</ion-content>

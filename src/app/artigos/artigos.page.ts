@@ -6,28 +6,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./artigos.page.scss'],
 })
 export class ArtigosPage implements OnInit {
-  news: any = [];
+  news: any[] = []; // Inicialize como um array vazio
+  loading: boolean = true; // Variável para controlar o estado de carregamento
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
- 
-    
     this.getTeslaNews();
-    
   }
-  getTeslaNews() {
-    const apiUrl = 'https://newsapi.org/v2/everything?q=mercado financeiro&from=2024-09-22&sortBy=publishedAt&apiKey=834c92db1be44f6ca2f114bd56199215';
 
+  getTeslaNews() {
+    const apiUrl = 'https://newsapi.org/v2/everything?q=financeiro&from=2024-10-24&sortBy=publishedAt&apiKey=725a67681180417681f0ecd373d8176f';
+
+    // Adicionando tratamento de erro para garantir que a API seja chamada corretamente
     fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-        this.news = data.articles.slice(6,11 );
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Erro ao carregar dados');
+        }
+        return response.json();
       })
-      .catch(error => console.error('Error fetching data:', error));
+      .then(data => {
+        this.news = data.articles.slice(6, 11); // Pega um intervalo específico dos artigos
+        this.loading = false; // Finaliza o carregamento
+      })
+      .catch(error => {
+        console.error('Erro ao buscar dados:', error);
+        this.loading = false; // Finaliza o carregamento mesmo em caso de erro
+      });
   }
 }
-
- 
-
-

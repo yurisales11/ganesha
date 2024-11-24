@@ -27,6 +27,40 @@ const routes: Routes = [
     path: 'artigos',
     loadChildren: () => import('./artigos/artigos.module').then( m => m.ArtigosPageModule)
   },
+  {
+    path: 'usuario',
+    loadChildren: () => import('./usuario/usuario.module').then( m => m.UsuarioPageModule)
+  },
+  {
+    path: 'conta',
+    loadChildren: () => import('./conta/conta.module').then( m => m.ContaPageModule)
+  },
+  {
+    path: 'adicionarcontas',
+    loadChildren: () => import('./adicionarcontas/adicionarcontas.module').then( m => m.AdicionarcontasPageModule)
+  },
+  {
+    path: 'planejamentos',
+    loadChildren: () => import('./planejamentos/planejamentos.module').then( m => m.PlanejamentosPageModule)
+  },
+  {
+    path: 'adicionarplanejamentos',
+    loadChildren: () => import('./adicionarplanejamentos/adicionarplanejamentos.module').then( m => m.AdicionarplanejamentosPageModule)
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
+  },
+  {
+   
+  
+    path: 'trocarsenha',
+    loadChildren: () => import('./trocarsenha/trocarsenha.module').then( m => m.TrocarsenhaPageModule)
+  },
+  {
+    path: 'teste',
+    loadChildren: () => import('./teste/teste.module').then( m => m.TestePageModule)
+  },
 ];
 
 @NgModule({

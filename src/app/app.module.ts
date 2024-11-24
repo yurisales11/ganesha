@@ -1,19 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
-
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { HttpClientModule } from '@angular/common/http';
+import { IonicModule } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-
-// Importações necessárias para configuração do locale
-import { LOCALE_ID } from '@angular/core';
-import { registerLocaleData } from '@angular/common';
-import localePt from '@angular/common/locales/pt';
-
-// Registrar o locale 'pt' para português
-registerLocaleData(localePt);
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { environment } from '../environments/environment';  // Certifique-se de que está correto
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,12 +13,10 @@ registerLocaleData(localePt);
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    AngularFireModule.initializeApp(environment.firebaseConfig), // Inicialização do Firebase
+    AngularFireAuthModule, // Módulo de autenticação
   ],
-  providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: LOCALE_ID, useValue: 'pt-BR' } // Configurar o idioma padrão como pt-BR
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

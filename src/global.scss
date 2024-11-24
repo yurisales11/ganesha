@@ -57,7 +57,6 @@
   }
   
 
-  ion-content{--background: #171a21}
 
   .dark-alert {
     --background: #ff0000; /* Cor de fundo escura */
@@ -77,3 +76,11 @@
   }
 
   .custom-label{color: white;}
+
+  .containerbody{  --background: #191919;}
+
+
+  ion-button{ text-transform: none;}
+
+  .background-dark{ --background: #11110f;
+    color: #fff;}

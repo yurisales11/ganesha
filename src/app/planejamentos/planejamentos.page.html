@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start" routerLink="/usuario">
+      <ion-button>
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Planejamentos</ion-title>
+    <ion-buttons slot="end" routerLink="/adicionarplanejamentos">
+      <ion-button>
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding background-dark">
+  <div class="info-container">
+    <ion-icon name="information-circle-outline"></ion-icon>
+    <p>
+      Aqui estão todos os seus planejamentos. Você pode acompanhar o progresso e ajustar os valores.
+      <a href="#">Saiba mais</a>
+    </p>
+  </div>
+
+  <ng-container *ngIf="planejamentos.length; else semPlanejamentos">
+    <ion-card *ngFor="let planejamento of planejamentos; let i = index" class="account-card">
+      <div class="account-header">
+        <div class="account-icon">
+          <ion-icon [name]="planejamento.icon" size="large"></ion-icon>
+        </div>
+        <div class="account-info">
+          <h3>{{ planejamento.nome }}</h3>
+        </div>
+      </div>
+      <div class="account-balance">
+        <span>Saldo atual: R$ {{ planejamento.saldoAtual | number: '1.2-2' }}</span>
+        <span>Objetivo: R$ {{ planejamento.saldoObjetivo | number: '1.2-2' }}</span>
+        <div class="plan-actions">
+          <ion-button (click)="editarPlanejamento(i)" fill="clear">
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
+          <ion-button (click)="excluirPlanejamento(i)" fill="clear">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div> 
+    </ion-card>
+  </ng-container>
+
+  <ng-template #semPlanejamentos>
+    <div class="empty-state">
+      <p>Nenhum planejamento cadastrado ainda. Clique no botão "+" para adicionar um.</p>
+    </div>
+  </ng-template>
+</ion-content>

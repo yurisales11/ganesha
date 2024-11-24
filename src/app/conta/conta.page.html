@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start" routerLink="/usuario">
+      <ion-button>
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Contas</ion-title>
+    <ion-buttons slot="end" routerLink="/adicionarcontas">
+      <ion-button>
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding background-dark">
+  <div class="info-container">
+    <ion-icon name="information-circle-outline"></ion-icon>
+    <p>
+      Aqui estão todas as suas contas. Você pode editá-las e ajustar o saldo
+      de cada conta caso haja necessidade.
+      <a href="#">Saiba mais</a>
+    </p>
+  </div>
+
+ <!-- Exibir todas as contas -->
+ <ion-card class="account-card" *ngFor="let conta of contas; let i = index">
+  <div class="account-header">
+    <div class="account-icon">
+      <!-- Ícone da conta -->
+      <ion-icon [name]="conta.icone || 'wallet-outline'" size="large"></ion-icon>
+    </div>
+    <div class="account-info">
+      <h3>{{ conta.nome }}</h3>
+
+    </div>
+    <ion-icon name="chevron-forward-outline" class="account-action" (click)="editarConta(i)"></ion-icon>
+  </div>
+  <div class="account-balance">
+    <span>Saldo atual</span>
+    <!-- Mostrar o saldo formatado -->
+    <span class="saldo-negativo">{{ conta.saldo | currency:'BRL' }}</span>
+    <!-- Botões de editar e excluir -->
+    <ion-icon name="create-outline" class="edit-icon" (click)="editarConta(i)"></ion-icon>
+    <ion-icon name="trash-outline" class="delete-icon" (click)="excluirConta(i)"></ion-icon>
+  </div>
+</ion-card>
+
+</ion-content>

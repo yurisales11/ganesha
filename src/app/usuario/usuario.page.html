@@ -1,0 +1,134 @@
+<ion-header>
+  <ion-toolbar style="padding: 10px;">
+    <ion-item>
+      <!-- Avatar com upload de imagem -->
+      <ion-avatar aria-hidden="true" slot="start" (click)="selecionarImagem()">
+        <img alt="Avatar" [src]="fotoAvatar || 'https://github.com/shadcn.png'" />
+      </ion-avatar>
+
+      <!-- Input invisível para upload de imagem -->
+      <input
+        type="file"
+        accept="image/*"
+        id="uploadAvatar"
+        style="display: none;"
+        (change)="atualizarAvatar($event)"/>
+
+      <!-- Nome do Usuário - Bem-vindo + nome do usuário -->
+      <ion-label>
+        Bem-vindo, {{ usuarioNome || 'Usuário' }}!
+      </ion-label>
+
+      <!-- Ícone de notificações -->
+      <ion-buttons slot="end" style="padding: 0px 20px;">
+        <ion-icon name="notifications-outline" style="font-size: 25px;" routerLink="/perfil"></ion-icon>
+      </ion-buttons>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class = "containerbody background-dark">
+
+  
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Saldo geral</ion-card-subtitle>
+      <div class="saldo-container">
+        <span class="saldo">
+          {{ isSaldoVisivel ? (saldoGeral | currency:'BRL':'symbol') : '****' }}
+        </span>
+        <ion-icon
+          name="{{ isSaldoVisivel ? 'eye-off-outline' : 'eye-outline' }}"
+          class="icon-visibility"
+          (click)="alternarVisibilidadeSaldo()"
+        ></ion-icon>
+      </div>
+      <ion-card-subtitle>Minhas contas</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <div class="account-item">
+        <ion-icon id="wallet" name="wallet-outline"></ion-icon>
+        <div class="summary-row">
+          <span>Total de Contas: {{ totalContas }}</span>
+        
+        </div>
+       
+        </div>
+      <ion-button expand="block" class = buttonuser fill="outline"  routerLink="/conta">Gerenciar contas</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Planejamentos</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <div class="account-item">
+        <ion-icon id="wallet" name="airplane-outline"></ion-icon>
+        <div class="infoaccount">
+          <div class="planejamento">
+            <h3>Total de Planejamentos: {{ totalPlanejamentos }}</h3>
+          </div>
+        </div>
+      </div>
+      <ion-button expand="block" color="success" fill="outline" routerLink="/planejamentos">
+        Gerenciar planejamentos
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+  
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Fique por dentro das informações</ion-card-subtitle>
+     
+    
+    </ion-card-header>
+  
+    <ion-card-content>
+      <div class="account-item">
+        <ion-icon id="wallet" name="document-text"></ion-icon>
+        <div class="infoaccount">
+          <div class = planejamento>
+            <h3>Confira as novidades do mercado</h3>
+           
+          </div>
+        
+        </div>
+      </div>
+      <ion-button expand="block" color="success" fill="outline"  routerLink="/artigos">Conferir Novidades</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+
+
+
+  
+  
+
+ 
+  
+
+ 
+  <ion-footer color = dark>
+    <ion-toolbar class="custom-footer-toolbar">
+      <ion-segment class="custom-segment">
+        <ion-segment-button value="home" routerLink ="/usuario">
+          <ion-icon name="home-outline" color = light routerLink ="/usuario"></ion-icon>
+        </ion-segment-button>
+  
+        <ion-segment-button value="add" routerLink ="/artigos">
+          <ion-icon name="add-circle-outline"color = light routerLink ="/artigos"></ion-icon>
+        </ion-segment-button>
+        
+        <ion-segment-button value="settings" routerLink ="/perfil">
+          <ion-icon name="settings-outline"color = light  routerLink ="/perfil"></ion-icon>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  </ion-footer>
+  

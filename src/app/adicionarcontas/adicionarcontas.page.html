@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start" routerLink="/conta">
+      <ion-button>
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="containertittle">Criar conta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding background-dark">
+  <!-- Nome da Conta -->
+  <ion-item class="input-dark">
+    <ion-label position="stacked">Nome da conta</ion-label>
+    <ion-input placeholder="Digite o nome da conta" #nomeConta></ion-input>
+  </ion-item>
+
+  <!-- Escolha de Ícone -->
+  <div class="icon-select-container">
+    <ion-label class="input-label">Escolha um ícone</ion-label>
+    <div class="icon-select">
+      <ion-button fill="clear" (click)="openIconModal()">
+        <ion-icon [name]="selectedIcon || 'add-outline'"></ion-icon>
+      </ion-button>
+      <span *ngIf="!selectedIcon">Selecione um ícone</span>
+     
+    </div>
+  </div>
+
+  <!-- Saldo da Conta -->
+  <ion-item class="input-dark">
+    <ion-label position="stacked">Saldo da conta</ion-label>
+    <ion-input type="number" placeholder="R$ 0,00" #saldoConta></ion-input>
+  </ion-item>
+
+  <ion-button 
+  expand="block" 
+  class="create-account-button" 
+  (click)="adicionarConta(nomeConta.value, saldoConta.value)">
+  Criar conta
+</ion-button>
+
+
+
+<!-- Modal para Seleção de Ícones -->
+<ion-modal [isOpen]="showIconModal" (ionModalDidDismiss)="closeIconModal()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="dark">
+        <ion-title>Selecione um Ícone</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="closeIconModal()">Fechar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4" *ngFor="let icon of icons">
+            <ion-button fill="clear" (click)="selectIcon(icon)">
+              <ion-icon [name]="icon" size="large"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
+  </ng-template>
+</ion-modal>

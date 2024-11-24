@@ -1,0 +1,34 @@
+<div class = pagebackground>
+  <div class="settings-container">
+  <ion-list lines="full" class = background-dark>
+    <!-- País -->
+    <ion-item class="custom-input " >
+      <ion-label position="stacked">Senha Nova</ion-label>
+      <ion-input [(ngModel)]="pais" type="password" placeholder="Digite sua senha "></ion-input>
+    </ion-item>
+
+    <!-- Telefone -->
+    <ion-item class="custom-input"  >
+      <ion-label position="stacked">Confirme sua Senha</ion-label>
+      <ion-input [(ngModel)]="telefone" type="password" placeholder="Confirme sua senha"></ion-input>
+    </ion-item>
+
+   
+  
+  </ion-list>
+
+    <!-- Botão Salvar Alterações -->
+    <ion-button
+    expand="block"
+    class="buttonuser"
+    fill="outline"
+    (click)="salvarAlteracoes()"
+  >
+    Salvar alterações
+  </ion-button>
+
+
+
+</div>
+</div>
+

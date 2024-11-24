@@ -1,0 +1,191 @@
+.background-dark {
+    --ion-background-color: --background: #11110f;
+  }
+  
+  .pagebackground {
+    padding: 16px;
+  }
+  
+  .settings-container {
+
+    margin-top: 50%;
+  
+   
+    .profile-section {
+      text-align: center;
+      margin-bottom: 10px;
+  
+  
+      ion-avatar {
+        width: 100px;
+        height: 100px;
+        margin: 75px auto;
+        cursor: pointer; 
+      }
+  
+      .profile-info {
+        margin-top: 0px;
+  
+        h2 {
+          font-size: 1.2rem;
+          color: white;
+        }
+      }
+    }
+  
+    ion-list {
+      --ion-background-color: --background: #11110f;
+      margin: 0 auto;
+  
+      color: #fff;
+    }
+  
+    .custom-input {
+    
+      ion-label {
+        color: white;
+      }
+  
+      ion-input {
+        
+        color: white;
+        background: transparent;
+        border-bottom: 1px solid white;
+        --placeholder-color: #cccccc;
+      }
+    }
+  }
+  
+  .buttonuser {
+   
+    --border-color: white;
+    --color: white;
+  }
+  
+  
+  
+  .pagebackground {
+    background-image: url(/assets/configurações.png);
+    background-size: cover; /* Para a imagem cobrir todo o espaço */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita repetição da imagem */
+    height: 100vh; /* Para garantir que a imagem cubra toda a altura da tela */
+    width: 100vw; /* Para garantir que a imagem cubra toda a largura da tela */
+  
+  }
+  
+  
+  .custom-footer-toolbar {
+    --background: #191919; /* Cor de fundo da toolbar */
+    --color: #ffffff; /*Cor dos ícones e texto */
+    --padding-start: 0; /* Remove padding desnecessário */
+    --padding-end: 0; /* Remove padding desnecessário */
+    --height: 0px; /* Diminuir a altura do footer */
+  }
+  
+  .custom-segment {
+    --background: red /* Cor de fundo do segmento */
+    --color: #1a237e; /* Cor dos ícones e texto do segmento */
+    --indicator-color: #ffffff; /* Cor do indicador ativo */
+  }
+  
+  .custom-segment-button {
+    --background: transparent; 
+     text-transform: none;/* Fundo transparente para os botões */
+    --color: #ffffff; /* Cor do texto dos botões */
+    --padding: 0; /* Remove padding interno dos botões */
+    --border: none; /* Remove borda dos botões */
+    display: flex;
+    flex-direction: column; /* Organiza ícones e labels em coluna */
+    align-items: center; /* Alinha ícones e labels ao centro horizontalmente */
+    justify-content: center; /* Alinha ícones e labels ao centro verticalmente **/
+  }
+  
+  .custom-icon {
+    font-size: 20px; /* Tamanho do ícone diminuído */
+  }
+  
+  .custom-label {
+    font-family: 'Roboto', sans-serif; /* Fonte personalizada para o texto */
+    font-size: 10px; /* Tamanho da fonte diminuído para o texto */
+    margin-top: 2px; /* Espaçamento reduzido entre ícone e texto */
+  }
+  
+  .login-content {
+    --background: #f2f2f2; /* Fundo cinza claro */
+  }
+  
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 16px;
+  }
+  
+  ion-card {
+    width: 100%;
+    max-width: 400px;
+    margin-top: -100px; /* Subindo o card um pouco acima do centro */
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  ion-card-title {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333333;
+  }
+  
+  .login-content {
+    --background: #f2f2f2; /* Fundo cinza claro */
+  }
+  
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 16px;
+  }
+  
+  ion-card {
+    width: 100%;
+    max-width: 400px;
+    margin-top: -100px; /* Subindo o card um pouco acima do centro */
+    background: transparent; /* Torna o card transparente */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Adiciona uma borda suave para destacar o card */
+    box-shadow: none; /* Remove a sombra do card */
+  }
+  
+  ion-card-title {
+    text-align: center;
+    font-size: 1.5rem;
+    --color: #0e0d0d; /* Título em branco para contrastar com o fundo */
+  }
+  
+  .white-input {
+    --background: #f0efef; /* Fundo branco semi-transparente */
+    --placeholder-color: #242424; /* Cor do placeholder para um cinza suave */
+    --color: #161515; /* Texto preto */
+    --border-radius: 3px;
+    --border: 3px;
+     margin-top: 5%;
+    
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --box-shadow: 0px 4px 6px rgba(249, 249, 249, 0.1); /* Sombra leve */
+  /* Espaçamento entre os inputs */
+  }
+  
+  .login-button {
+    --background:#29b63e;   /* Cor do botão (azul padrão do Ionic) */
+    --color: #ffffff; /* Texto branco no botão */
+    --border-radius: 8px;
+    font-size: 1.2rem;
+    margin-top: 5%;
+    text-transform: none;
+  }
+  
+  
+  
