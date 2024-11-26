@@ -20,42 +20,41 @@
     text-decoration: none;
   }
   
-  .account-card {
+  .recipe-card {
     background-color: #1d1d1d;
     border-radius: 10px;
     padding: 15px;
   }
   
-  .account-header {
+  .recipe-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-   
   }
   
-  .account-icon ion-icon {
+  .recipe-icon ion-icon {
     font-size: 40px;
     color: white;
   }
   
-  .account-info h3 {
+  .recipe-info h3 {
     color: white;
     margin: 0;
     font-size: 16px;
   }
   
-  .account-info p {
+  .recipe-info p {
     margin: 0;
     font-size: 12px;
     color: #faf8f8;
   }
   
-  .account-action {
+  .recipe-action {
     font-size: 18px;
     color: #ffffff;
   }
   
-  .account-balance {
+  .recipe-balance {
     color: white;
     display: flex;
     align-items: center;
@@ -63,19 +62,18 @@
     margin-top: 10px;
   }
   
-  .account-balance .saldo-negativo {
-    color: red;
-   font-family:Arial, Helvetica, sans-serif;
-   font-weight: bold;
+  .recipe-balance .saldo-positivo {
+    color: rgb(24, 204, 24);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
   }
-
-  .saldonegativo{color: #E83F5B;}
+  .valor-positivo{color: #12A454}
   
   .edit-icon {
     color: #bcbcbc;
     font-size: 18px;
   }
-
+  
   .edit-icon, .delete-icon {
     cursor: pointer;
     margin-left: 10px;
@@ -90,21 +88,25 @@
   }
   
 
-  .total-container {
-    display: flex;
+  .recipe-value{display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 10px 16px;
-    margin-bottom: 20px;
-    background-color: #1e1e1e;
-    border-radius: 8px;
-    color: #ffffff;
-  }
-  
-  .total-valor {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #E83F5B
-  }
-  
-  
+align-items: center;
+color: white;}
+
+
+.total-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  margin-bottom: 20px;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  color: #ffffff;
+}
+
+.total-valor {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #12A454
+}

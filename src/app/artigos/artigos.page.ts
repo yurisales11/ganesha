@@ -16,7 +16,7 @@ export class ArtigosPage implements OnInit {
   }
 
   getTeslaNews() {
-    const apiUrl = 'https://newsapi.org/v2/everything?q=financeiro&from=2024-10-24&sortBy=publishedAt&apiKey=725a67681180417681f0ecd373d8176f';
+    const apiUrl = 'https://newsapi.org/v2/everything?q=financeiro&from=2024-11-10&sortBy=publishedAt&apiKey=725a67681180417681f0ecd373d8176f';
 
     // Adicionando tratamento de erro para garantir que a API seja chamada corretamente
     fetch(apiUrl)

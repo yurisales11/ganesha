@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="dark">
-    <ion-buttons slot="start" routerLink="/usuario">
+    <ion-buttons slot="start" routerLink="/teste">
       <ion-button>
         <ion-icon name="chevron-back-outline"></ion-icon>
       </ion-button>
@@ -24,27 +24,45 @@
     </p>
   </div>
 
- <!-- Exibir todas as contas -->
- <ion-card class="account-card" *ngFor="let conta of contas; let i = index">
-  <div class="account-header">
-    <div class="account-icon">
-      <!-- Ícone da conta -->
-      <ion-icon [name]="conta.icone || 'wallet-outline'" size="large"></ion-icon>
-    </div>
-    <div class="account-info">
-      <h3>{{ conta.nome }}</h3>
-
-    </div>
-    <ion-icon name="chevron-forward-outline" class="account-action" (click)="editarConta(i)"></ion-icon>
+   <!-- Exibir o total de receitas -->
+   <div class="total-container">
+    <h2>Total</h2>
+    <span class="total-valor">{{ totalContas | currency:'BRL' }}</span>
   </div>
-  <div class="account-balance">
-    <span>Saldo atual</span>
-    <!-- Mostrar o saldo formatado -->
-    <span class="saldo-negativo">{{ conta.saldo | currency:'BRL' }}</span>
-    <!-- Botões de editar e excluir -->
-    <ion-icon name="create-outline" class="edit-icon" (click)="editarConta(i)"></ion-icon>
-    <ion-icon name="trash-outline" class="delete-icon" (click)="excluirConta(i)"></ion-icon>
-  </div>
-</ion-card>
 
+  <!-- Exibir todas as contas -->
+  <ion-card class="account-card" *ngFor="let conta of contas; let i = index">
+    <div class="account-header">
+      <div class="account-icon">
+        <!-- Ícone da conta -->
+        <ion-icon [name]="conta.icone || 'wallet-outline'" size="large"></ion-icon>
+      </div>
+      <div class="account-info">
+        <h3>{{ conta.nome }}</h3>
+      </div>
+      <ion-icon
+        name="chevron-forward-outline"
+        class="account-action"
+        (click)="editarConta(i)">
+      </ion-icon>
+    </div>
+    <div class="account-balance">
+      <span>Saldo atual</span>
+      <!-- Mostrar o saldo formatado -->
+      <span [ngClass]="{ 'saldo-negativo': conta.saldo < 0 }" class = saldonegativo>
+        {{ conta.saldo | currency: 'BRL' }}
+      </span>
+      <!-- Botões de editar e excluir -->
+      <ion-icon
+        name="create-outline"
+        class="edit-icon"
+        (click)="editarConta(i)">
+      </ion-icon>
+      <ion-icon
+        name="trash-outline"
+        class="delete-icon"
+        (click)="excluirConta(i)">
+      </ion-icon>
+    </div>
+  </ion-card>
 </ion-content>

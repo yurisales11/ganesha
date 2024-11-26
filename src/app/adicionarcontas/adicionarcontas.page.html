@@ -44,7 +44,7 @@
 
 
 <!-- Modal para Seleção de Ícones -->
-<ion-modal [isOpen]="showIconModal" (ionModalDidDismiss)="closeIconModal()">
+<ion-modal [isOpen]="showIconModal" (ionModalDidDismiss)="closeIconModal()" color = dark>
   <ng-template>
     <ion-header>
       <ion-toolbar color="dark">
@@ -54,7 +54,7 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
-    <ion-content>
+    <ion-content class = modaladd color = dark>
       <ion-grid>
         <ion-row>
           <ion-col size="4" *ngFor="let icon of icons">

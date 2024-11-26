@@ -82,5 +82,25 @@
 
   ion-button{ text-transform: none;}
 
+  /* Definindo a fonte globalmente para todo o projeto */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+
   .background-dark{ --background: #11110f;
     color: #fff;}
+
+
+    .error-message {
+      font-size: 14px;
+      margin-top: 10px;
+      text-align: center;
+      color: red; /* A cor vermelha pode ser ajustada conforme preferir */
+    }
+    
+
+    .modaladd{display: flex;
+    justify-content: center;
+  align-items: center;
+  background-color: red;}

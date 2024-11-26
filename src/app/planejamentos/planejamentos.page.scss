@@ -1,82 +1,168 @@
 .background-dark {
-    --background: #121212;
-    color: #fff;
+  --background: #121212;
+  color: #fff;
+}
+
+.info-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.info-container ion-icon {
+  font-size: 22px;
+}
+
+.info-container a {
+  color: #00b33c;
+  text-decoration: none;
+}
+
+.account-card {
+  margin: 15px 0;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #1d1d1d; /* Cor de fundo mais escura */
+  color: white;
+}
+
+.account-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .account-icon {
+    margin-right: 10px;
+
+    ion-icon {
+      font-size: 40px;
+      color: #12A454; /* Ícones com destaque verde */
+    }
   }
-  
-  .info-container {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 20px;
-    color: #bcbcbc;
+
+  .account-info {
+    flex: 1;
+
+    h3 {
+      margin: 0;
+      font-size: 18px;
+      color: white;
+    }
+
+    p {
+      margin: 5px 0 0;
+      font-size: 12px;
+      color: #faf8f8; /* Texto mais claro */
+    }
   }
-  
-  .info-container ion-icon {
-    font-size: 22px;
-  }
-  
-  .info-container a {
-    color: #00b33c;
-    text-decoration: none;
-  }
-  
-  .account-card {
-    background-color: #1d1d1d;
-    border-radius: 10px;
-    padding: 15px;
-  }
-  
-  .account-header {
-    display: flex;
-    align-items: center;
-    gap: 10%;
-  
+}
+
+.progress-container {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+
+  ion-progress-bar {
    
+    --progress-background:  #12A454; /* Fundo da barra */
+    --background: #a0a0a0; /* Cor do progresso */
+    height: 22px;
+    border-radius: 6px;
+    margin-right: 10px;
   }
-  
-  .account-icon ion-icon {
- 
-    font-size: 40px;
-    color: rgb(47, 189, 57);
+
+  span {
+    font-size: 14px;
+    color: #d1d1d1; /* Cor do texto ao lado da barra */
   }
-  
-  .account-info h3 {
-    color: white;
-    max-width: 100%;
-    width: 100%;
-    margin: 0;
-    font-size: 16px;
-  }
-  
-  .account-info p {
-    margin: 0;
-    font-size: 12px;
-    color: #d7d5d5;
-  }
-  
-  .account-action {
-    font-size: 18px;
-    color: #e1dfdf;
-  }
-  
-  .account-balance {
-    color: #e1dfdf;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
-  
-  .account-balance .saldo-negativo {
+}
+
+.account-balance {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+
+  .saldo-negativo {
     color: red;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
   }
-  
-  .edit-icon {
-    color: #bcbcbc;
-    font-size: 18px;
+}
+
+.saldonegativo {
+  color: #E83F5B;
+}
+
+.edit-icon,
+.delete-icon {
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+.edit-icon {
+  color: rgb(248, 248, 248); /* Ícone de edição claro */
+}
+
+.delete-icon {
+  color: rgb(255, 121, 121); /* Ícone de exclusão em vermelho */
+}
+
+.plan-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+
+  ion-button {
+    margin-left: 10px;
+    ion-icon {
+      font-size: 20px;
+      color: #d1d1d1; /* Botões discretos */
+    }
   }
+}
+
+.total-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  margin-bottom: 20px;
+  background-color: #1e1e1e; /* Fundo mais escuro */
+  border-radius: 8px;
+  color: #ffffff;
+}
+
+.total-valor {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #E83F5B;
+}
+
+.empty-state {
+  text-align: center;
+  margin-top: 50px;
+
+  p {
+    color: #d1d1d1; /* Texto de estado vazio */
+  }
+}
+
+.progress-container {
+  position: relative;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 36%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+}
 
 
- .plan-actions{display: flex;}
-  

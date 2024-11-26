@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-planejamentos',
@@ -8,24 +9,38 @@ import { Router } from '@angular/router';
 })
 export class PlanejamentosPage implements OnInit {
   planejamentos: any[] = []; // Lista de planejamentos
-  totalPlanejamentos: number = 0; // Total de planejamentos
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private toastController: ToastController
+  ) {}
 
   ngOnInit() {
     this.carregarPlanejamentos();
-    
   }
 
+  ionViewWillEnter() {
+    this.carregarPlanejamentos();
+  }
+
+  // Carregar os planejamentos do localStorage
   carregarPlanejamentos() {
     const planejamentosSalvos = localStorage.getItem('planejamentos');
     this.planejamentos = planejamentosSalvos ? JSON.parse(planejamentosSalvos) : [];
   }
 
-  calcularProgresso(saldoAtual: number, saldoObjetivo: number): number {
-    return Math.min((saldoAtual / saldoObjetivo) * 100, 100); // Limita a 100%
+  // Função para exibir o Toast
+  async showToast(message: string, color: 'success' | 'danger') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      color: color, // Cor do toast: sucesso (verde) ou erro (vermelho)
+      position: 'top' // Posição do toast
+    });
+    toast.present();
   }
 
+  // Função para editar um planejamento
   editarPlanejamento(i: number) {
     const planejamento = this.planejamentos[i];
     // Redireciona para a página de adicionar planejamento passando os dados
@@ -37,12 +52,20 @@ export class PlanejamentosPage implements OnInit {
         icon: planejamento.icon,
       },
     });
+
+    // Exibe um toast informando que o planejamento está sendo editado
+    this.showToast('Planejamento editado!', 'success');
   }
 
+  // Função para excluir um planejamento
   excluirPlanejamento(i: number) {
+    const planejamento = this.planejamentos[i];
     const planejamentos = [...this.planejamentos];
     planejamentos.splice(i, 1); // Remove o planejamento selecionado
     localStorage.setItem('planejamentos', JSON.stringify(planejamentos)); // Atualiza o localStorage
     this.carregarPlanejamentos(); // Atualiza a lista de planejamentos no componente
+
+    // Exibe um toast de sucesso após excluir
+    this.showToast('Planejamento excluído com sucesso!', 'success');
   }
 }

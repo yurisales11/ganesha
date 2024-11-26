@@ -26,11 +26,12 @@ export class CadastroPage {
       // Chama o serviço para registrar o usuário com o email e senha
       await this.registroService.registrar(this.email, this.senha);
       
-      // Após o cadastro, salva o nome do usuário (login) no localStorage
+      // Após o cadastro, salva o nome do usuário (login) e a senha no localStorage
       localStorage.setItem('usuarioNome', this.login);  // Salva o nome do usuário no localStorage
+      localStorage.setItem('usuarioSenha', this.senha);  // Salva a senha no localStorage (não recomendado para produção)
 
       alert('Usuário cadastrado com sucesso!');
-      this.router.navigate(['/usuario']);  // Redireciona para a página do usuário (ou login)
+      this.router.navigate(['/teste']);  // Redireciona para a página do usuário (ou login)
     } catch (erro) {
       alert('Erro ao cadastrar: ' + erro);
     }

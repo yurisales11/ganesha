@@ -1,17 +1,10 @@
+
 <ion-header>
-  <ion-toolbar style="padding: 10px; background-color: #f4f4f4; border-bottom: 1px solid #ddd;">
-    <ion-item lines="none" style="display: flex; align-items: center;">
+  <ion-toolbar style="padding: 10px;">
+    <ion-item>
       <!-- Avatar com upload de imagem -->
-      <ion-avatar
-        slot="start"
-        aria-hidden="true"
-      
-        (click)="selecionarImagem()"
-      >
-        <img
-          alt="Avatar"
-          [src]="fotoAvatar || 'https://github.com/shadcn.png'"
-        />
+      <ion-avatar aria-hidden="true" slot="start" (click)="selecionarImagem()">
+        <img alt="Avatar" [src]="fotoAvatar || 'https://github.com/shadcn.png'" />
       </ion-avatar>
 
       <!-- Input invisível para upload de imagem -->
@@ -20,81 +13,181 @@
         accept="image/*"
         id="uploadAvatar"
         style="display: none;"
-        (change)="atualizarAvatar($event)"
-      />
+        (change)="atualizarAvatar($event)"/>
 
+         <!-- Nome do Usuário - Bem-vindo + nome do usuário -->
+         <ion-label>
+        {{ usuarioNome || 'Usuário' }}
+        </ion-label>
+
+      <!-- Ícone de notificações -->
       <ion-buttons slot="end" style="padding: 0px 20px;">
-        <ion-icon name="options" style="font-size: 24px; color: #ffffff;" routerLink="/perfil"></ion-icon>
+        <ion-icon name="notifications-outline" style="font-size: 25px;" routerLink="/perfil"></ion-icon>
       </ion-buttons>
-      
-      <!-- Exemplo de texto ou espaço adicional ao lado do avatar -->
-      <div style="margin-left: 15px; flex-grow: 1;">
-        <h2 style="margin: 0; font-size: 16px; color: #333;">Seu Nome</h2>
-       
-      </div>
     </ion-item>
   </ion-toolbar>
 </ion-header>
-
-
 
 <ion-content [fullscreen]="true">
   <div class="header">
     <div class="bemvindo">
       <div class="nome-container">
-        <h1>Olá, Rodrigo</h1>
+        <span> Olá, {{ usuarioNome || 'Usuário' }}!</span>
       </div>
-      <ion-button fill="clear" class="visibility-button">
+      <ion-button fill="clear" class="visibility-button" (click)="alternarVisibilidade()">
         <ion-icon name="eye-outline" class="icon-visibility"></ion-icon>
       </ion-button>
     </div>
 
-    <!-- Exibindo o saldo abaixo -->
     <div class="saldo">
+      <div class="money">
+        <div class="brl">
+          <h2>R$</h2>
+        </div>
+        <div class="saldomoney" [ngClass]="{'positivo': saldoAtual >= 0, 'negativo': saldoAtual < 0}">
+          <!-- Aqui verificamos se o saldo está visível ou não -->
+        <h2 *ngIf="saldoVisivel">{{ saldoAtual | number: '1.2-2' }}</h2>
+        <h2 *ngIf="!saldoVisivel">••••••</h2>
+        </div>
+        
+      </div>
       <h1>Saldo atual</h1>
-      <h2>R$ 100</h2>
     </div>
-  </div>
- 
-  <div class = card>
-    <h2>Receitas</h2>
-    <span>R$ 100</span>
+    
   </div>
 
-    <div class = card>
-      <h2>Despesas</h2>
-      <span>R$ 100</span>
+  <div class="card" routerLink="/receitas">
+    <div class="iconnome">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="11" cy="11" r="11" fill="#12A454" />
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M15.809 9.32874C15.809 9.32874 16.0637 8.67732 15.809 8.42881L11.4611 4.18638C11.2064 3.93787 10.7936 3.93787 10.5389 4.18638L6.19102 8.42881C5.93633 8.67732 5.93633 9.08025 6.19102 9.32874C6.44571 9.57726 6.85865 9.57726 7.11333 9.32874L10.3478 6.17268V13.1212C10.3478 13.7264 10.1564 14.6485 9.60114 15.4009C9.06992 16.1209 8.17875 16.7273 6.65218 16.7273C6.29199 16.7273 6 17.0122 6 17.3636C6 17.7151 6.29199 18 6.65218 18C8.60387 18 9.88662 17.1922 10.6597 16.1445C11.4089 15.1293 11.6522 13.9302 11.6522 13.1212V6.17268L14.8867 9.32874C15.1414 9.57726 15.809 9.32874 15.809 9.32874Z"
+          fill="#253031"
+        />
+      </svg>
+      <h2>Receitas</h2>
+      <ion-buttons slot="end" style="margin-left: 133px;">
+        <ion-icon name="chevron-forward" style="font-size: 24px; color: #ffffff;" routerLink="/receitas"></ion-icon>
+      </ion-buttons>
     </div>
-
-    <div class = "card planejamento">
-      <h2>Planejamentos</h2>
-      <div class = information>
-      <span>Educação</span>
-      <div class = barradeprogresso>
-        <ion-progress-bar [value]="50" class="custom-progress-bar"></ion-progress-bar>
-        <span>50%</span>
+  
+    <!-- Total de Receitas -->
+    <div class="total">
+      <div class = money>
+      <div class = brl>
+      <h2>R$</h2>
       </div>
-      </div>
-
-      <div class = information>
-        <span>Viagem</span>
-        <div class = barradeprogresso>
-          <ion-progress-bar [value]="50" class="custom-progress-bar"></ion-progress-bar>
-          <span>50%</span>
-        </div>
-        </div>
-
-        <div class = information>
-          <span>Alimentação</span>
-          <div class = barradeprogresso>
-            <ion-progress-bar [value]="50" class="custom-progress-bar"></ion-progress-bar>
-            <span>50%</span>
-          </div>
-          </div>
+      <div class = saldomoney2>
+      <h2>{{ totalReceitas | number: '1.2-2' }}</h2>
     </div>
-
-
+    </div>
+    </div>
+  
+    <!-- Listagem de Receitas -->
+    <ul>
+      <div class="listareceitas" *ngFor="let receita of receitas">
+        <li>
+          <p>R$ {{ receita.valor | number: '1.2-2' }}</p>
+        </li>
+        <span>{{ receita.nome }}</span>
+      </div>
+    </ul>
+  </div>
+  
+  
   
 
+  <div class="card" routerLink="/conta">
+    <div class = iconnome>
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="11" cy="11" r="11" fill="#E83F5B"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M15.809 12.6713C16.0637 12.9197 16.0637 13.3227 15.809 13.5712L11.4611 17.8136C11.2064 18.0621 10.7936 18.0621 10.5389 17.8136L6.19102 13.5712C5.93633 13.3227 5.93633 12.9197 6.19102 12.6713C6.44571 12.4227 6.85865 12.4227 7.11333 12.6713L10.3478 15.8273V8.87879C10.3478 8.27356 10.1564 7.35152 9.60114 6.59908C9.06992 5.87914 8.17875 5.27273 6.65218 5.27273C6.29199 5.27273 6 4.98781 6 4.63636C6 4.28492 6.29199 4 6.65218 4C8.60387 4 9.88662 4.80776 10.6597 5.85547C11.4089 6.87068 11.6522 8.06984 11.6522 8.87879V15.8273L14.8867 12.6713C15.1414 12.4227 15.5543 12.4227 15.809 12.6713Z" fill="#253031"/>
+      </svg>
+      
+    <h2>Despesas</h2>
+    <!-- Ícone de notificações -->
+    <ion-buttons slot="end" style="margin-left: 120px;">
+      <ion-icon name="chevron-forward" style="font-size: 24px; color: #ffffff;" routerLink="/conta"></ion-icon>
+      </ion-buttons>
+    </div>
+  
+    <!-- Total de Contas -->
+    <div class="total">
+      <div class="money">
+        <div class="brl">
+          <h2>R$</h2>
+        </div>
+        <div class="saldomoney3">
+          <h2>{{ totalContas | number: '1.2-2' }}</h2>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Listagem de Contas -->
+    <ul>
+      <div class="listadespesas" *ngFor="let conta of contas">
+        <li>
+          <p>R$ {{ conta.saldo | number: '1.2-2' }}</p>
+        </li>
+        <span>{{ conta.nome }}</span>
+      </div>
+    </ul>
+  </div>
 
+  <div class="card planejamento" routerLink="/planejamentos" >
+    <div class = iconnome>
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="11" cy="11" r="11" fill="#12A454"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M15.809 9.32874C15.809 9.32874 16.0637 8.67732 15.809 8.42881L11.4611 4.18638C11.2064 3.93787 10.7936 3.93787 10.5389 4.18638L6.19102 8.42881C5.93633 8.67732 5.93633 9.08025 6.19102 9.32874C6.44571 9.57726 6.85865 9.57726 7.11333 9.32874L10.3478 6.17268V13.1212C10.3478 13.7264 10.1564 14.6485 9.60114 15.4009C9.06992 16.1209 8.17875 16.7273 6.65218 16.7273C6.29199 16.7273 6 17.0122 6 17.3636C6 17.7151 6.29199 18 6.65218 18C8.60387 18 9.88662 17.1922 10.6597 16.1445C11.4089 15.1293 11.6522 13.9302 11.6522 13.1212V6.17268L14.8867 9.32874C15.1414 9.57726 15.809 9.32874 15.809 9.32874Z" fill="#253031"/>
+      </svg>
+      
+    <h2>Planejamentos</h2>
+    <!-- Ícone de notificações -->
+    <ion-buttons slot="end" style="margin-left: 60px;">
+      <ion-icon name="chevron-forward" style="font-size: 24px; color: #ffffff;" routerLink="/planejamentos"></ion-icon>
+
+    </ion-buttons>
+   
+    </div>
+
+    
+    <div *ngFor="let planejamento of planejamentos" class = "account-info" >
+      <div class="account-info">
+      <span>{{ planejamento.nome }}</span>
+     </div>
+      
+      
+      <div class="progress-container">
+        <ion-progress-bar [value]="planejamento.progresso / 100" class="custom-progress-bar"></ion-progress-bar>
+        <div class="progress-text">
+          Restam R$ {{ planejamento.restante | number: '1.2-2' }}
+        </div>
+        <span>{{ planejamento.progresso | number: '1.0-0' }}%</span>
+      </div>
+      
+    </div>
+    
+    
+  </div>
 </ion-content>
+
+
+<ion-footer color = dark>
+  <ion-toolbar class="custom-footer-toolbar">
+    <ion-segment class="custom-segment">
+      <ion-segment-button value="home" routerLink ="/teste">
+        <ion-icon name="home-outline" color = light routerLink ="/usuario"></ion-icon>
+      </ion-segment-button>
+
+      <ion-segment-button value="add" routerLink ="/artigos">
+        <ion-icon name="add-circle-outline"color = light routerLink ="/artigos"></ion-icon>
+      </ion-segment-button>
+      
+      <ion-segment-button value="settings" routerLink ="/perfil">
+        <ion-icon name="settings-outline"color = light  routerLink ="/perfil"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>

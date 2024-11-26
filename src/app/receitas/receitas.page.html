@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start" routerLink="/teste">
+      <ion-button>
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Receitas</ion-title>
+    <ion-buttons slot="end" routerLink="/adicionarreceitas">
+      <ion-button>
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding background-dark">
+  <div class="info-container">
+    <ion-icon name="information-circle-outline"></ion-icon>
+    <p>
+      Aqui estão todas as suas receitas. Você pode editá-las ou ajustá-las
+      conforme necessário.
+      <a href="#">Saiba mais</a>
+    </p>
+  </div>
+
+  <!-- Exibir o total de receitas -->
+  <div class="total-container">
+    <h2>Total</h2>
+    <span class="total-valor">{{ totalReceitas | currency:'BRL' }}</span>
+  </div>
+
+  <!-- Exibir todas as receitas -->
+  <ion-card class="recipe-card" *ngFor="let receita of receitas; let i = index">
+    <div class="recipe-header">
+      <div class="recipe-icon">
+        <!-- Ícone da receita -->
+        <ion-icon [name]="receita.icone || 'wallet-outline'" size="large"></ion-icon>
+      </div>
+      <div class="recipe-info">
+        <h3>{{ receita.nome }}</h3>
+      </div>
+      <ion-icon name="chevron-forward-outline" class="recipe-action" (click)="editarReceita(i)"></ion-icon>
+    </div>
+    <div class="recipe-value">
+      <span>Valor</span>
+      <!-- Mostrar o valor formatado -->
+      <span class="valor-positivo">{{ receita.valor | currency:'BRL' }}</span>
+      <div class="botoesedit">
+        <!-- Botões de editar e excluir -->
+        <ion-icon name="trash-outline" class="delete-icon" (click)="excluirReceita(i)"></ion-icon>
+      </div>
+    </div>
+  </ion-card>
+</ion-content>

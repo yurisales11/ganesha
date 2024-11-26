@@ -1,63 +1,49 @@
-
 <ion-content>
-  
-
-  
-  <div class = pagebackground> 
-      <div class="login-container">
-        <ion-card>
+  <div class="pagebackground">
+    <div class="login-container">
+      <ion-card>
+        <ion-card-content>
+          <!-- Lista de Inputs -->
+          <ion-list lines="full" class="background-dark">
+            
+            <!-- Login -->
+            <ion-item class="custom-input" style="border-bottom: 1px solid white;">
+              <ion-label position="stacked" color="light">Usuário</ion-label>
+              <ion-input [(ngModel)]="login" placeholder="Digite seu login" type="text" required style="color:white"></ion-input>
+            </ion-item>
           
-          <ion-card-content>
-            <!-- Input de Login -->
-            <ion-input class = inputloginborda
-              label="Usuário"
-              labelPlacement="floating"
-              type="text"
-              class="white-input"
-              required
-            ></ion-input>
-    
-            <!-- Input de Senha -->
-            <ion-input
-              label="Senha"
-              labelPlacement="floating"
-              type="password"
-              class="white-input"
-              required
-            ></ion-input>
-    
-            <!-- Botão de Login -->
-            <ion-button expand="block" class="login-button" routerLink="/menu">Entrar</ion-button>
-          </ion-card-content>
-        </ion-card>
-      </div>
-   
-    
+            <!-- Senha -->
+            <ion-item class="custom-input" style="border-bottom: 1px solid white;">
+              <ion-label position="stacked" color="light">Senha</ion-label>
+              <ion-input [(ngModel)]="senha" placeholder="Digite sua senha" type="password" required style="color:white"></ion-input>
+            </ion-item>
 
-
-   
-   
-
-</div>
-
+          </ion-list>
+          
+          <!-- Botão de Login -->
+          <ion-button expand="block" class="login-button" (click)="loginUser()">
+            Entrar
+          </ion-button>
+          
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
 </ion-content>
 
-<ion-footer>
+<ion-footer color="dark">
   <ion-toolbar class="custom-footer-toolbar">
     <ion-segment class="custom-segment">
-      <ion-segment-button value="filmes" class="custom-segment-button" routerLink="/menu">
-          <ion-icon name="wallet-outline"></ion-icon>
-        <ion-label class="custom-label">Convidado</ion-label>
+      <ion-segment-button value="home" routerLink="/login">
+        <ion-icon name="home-outline" color="light" routerLink="/login"></ion-icon>
       </ion-segment-button>
 
-      <ion-segment-button value="futebol" class="custom-segment-button"routerLink="/login" >
-          <ion-icon name="person-outline"></ion-icon>
-        <ion-label class="custom-label">Login</ion-label>
+      <ion-segment-button value="add" routerLink="/cadastro">
+        <ion-icon name="person-add-outline" color="light" routerLink="/cadastro"></ion-icon>
       </ion-segment-button>
-
-      <ion-segment-button value="noticias" class="custom-segment-button" routerLink="/cadastro" >
-          <ion-icon name="person-add-outline"></ion-icon>
-        <ion-label class="custom-label">Cadastro</ion-label>
+      
+      <ion-segment-button value="settings" routerLink="/login">
+        <ion-icon name="person-outline" color="light" routerLink="/login"></ion-icon>
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>

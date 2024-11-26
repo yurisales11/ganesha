@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start" routerLink="/receitas">
+      <ion-button>
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="containertittle">Criar Receita</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding background-dark">
+  <!-- Nome da Receita -->
+  <ion-item class="input-dark">
+    <ion-label position="stacked">Nome da receita</ion-label>
+    <ion-input placeholder="Digite o nome da receita" #nomeReceita></ion-input>
+  </ion-item>
+
+  <!-- Escolha de Ícone -->
+  <div class="icon-select-container">
+    <ion-label class="input-label">Escolha um ícone</ion-label>
+    <div class="icon-select">
+      <ion-button fill="clear" (click)="openIconModal()">
+        <ion-icon [name]="selectedIcon || 'add-outline'"></ion-icon>
+      </ion-button>
+      <span *ngIf="!selectedIcon">Selecione um ícone</span>
+    </div>
+  </div>
+
+  <!-- Valor da Receita -->
+  <ion-item class="input-dark">
+    <ion-label position="stacked">Valor da receita</ion-label>
+    <ion-input type="number" placeholder="R$ 0,00" #valorReceita></ion-input>
+  </ion-item>
+
+  <!-- Botão para Criar Receita -->
+  <ion-button 
+    expand="block" 
+    class="create-recipe-button" 
+    (click)="adicionarReceita(nomeReceita.value, valorReceita.value)">
+    Criar receita
+  </ion-button>
+
+  <!-- Modal para Seleção de Ícones -->
+  <ion-modal [isOpen]="showIconModal" (ionModalDidDismiss)="closeIconModal()" color = dark>
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="dark">
+          <ion-title>Selecione um Ícone</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeIconModal()">Fechar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content color = dark class = modaladd>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4" *ngFor="let icon of icons">
+              <ion-button fill="clear" (click)="selectIcon(icon)">
+                <ion-icon [name]="icon" size="large"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

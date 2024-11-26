@@ -24,24 +24,20 @@
   [inputs]="alertInputs"
 ></ion-alert>
 
-  <ion-footer>
-    <ion-toolbar class="custom-footer-toolbar">
-      <ion-segment class="custom-segment">
-        <ion-segment-button value="filmes" class="custom-segment-button" id="color-alert" (click)="presentAlert()" >
-            <ion-icon name="wallet-outline" id="present-alert" (click)="presentAlert()"></ion-icon>
-          <ion-label class="custom-label"  id="present-alert" (click)="presentAlert()">Convidado</ion-label>
-        </ion-segment-button>
-  
-        <ion-segment-button value="futebol" class="custom-segment-button"routerLink="/login" >
-            <ion-icon name="person-outline"></ion-icon>
-          <ion-label class="custom-label">Login</ion-label>
-        </ion-segment-button>
-  
-        <ion-segment-button value="noticias" class="custom-segment-button" routerLink="/cadastro" >
-            <ion-icon name="person-add-outline"></ion-icon>
-          <ion-label class="custom-label">Cadastro</ion-label>
-        </ion-segment-button>
-      </ion-segment>
-    </ion-toolbar>
-  </ion-footer>
-  
+<ion-footer color = dark>
+  <ion-toolbar class="custom-footer-toolbar">
+    <ion-segment class="custom-segment">
+      <ion-segment-button value="home" routerLink ="/login">
+        <ion-icon name="home-outline" color = light routerLink ="/login"></ion-icon>
+      </ion-segment-button>
+
+      <ion-segment-button value="add" routerLink ="/cadastro">
+        <ion-icon name="person-add-outline" color = light routerLink ="/cadastro"></ion-icon>
+      </ion-segment-button>
+      
+      <ion-segment-button value="settings" routerLink ="/login">
+        <ion-icon name="person-outline" color = light routerLink ="/login"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>

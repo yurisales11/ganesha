@@ -1,47 +1,58 @@
 <ion-content>
-  <div class="login-container">
-    <ion-card>
-      <ion-card-content>
-        <!-- Input de email -->
-        <ion-input
-          [(ngModel)]="email"
-          label="Digite seu email"
-          labelPlacement="floating"
-          type="text"
-          required
-        ></ion-input>
-<!-- Input de Login -->
-        <ion-input
-        [(ngModel)]="login"
-        label="Digite seu login"
-        labelPlacement="floating"
-        type="text"
-        required
-      ></ion-input>
-
-        <!-- Input de Senha -->
-        <ion-input
-          [(ngModel)]="senha"
-          label="Digite sua senha"
-          labelPlacement="floating"
-          type="password"
-          required
-        ></ion-input>
-
-        <!-- Confirmação de Senha -->
-        <ion-input
-          [(ngModel)]="confirmarSenha"
-          label="Confirme sua senha"
-          labelPlacement="floating"
-          type="password"
-          required
-        ></ion-input>
-
-        <!-- Botão de Cadastro -->
-        <ion-button expand="block" class="login-button" (click)="cadastrar()">
-          Cadastrar
-        </ion-button>
-      </ion-card-content>
-    </ion-card>
+  <div class="pagebackground">
+    <div class="login-container">
+      <ion-card>
+        <ion-card-content>
+          <ion-list lines="full" class="background-dark">
+            <!-- Email -->
+            <ion-item class="custom-input" style="border-bottom: 1px solid white;">
+              <ion-label position="stacked" color="light">Email</ion-label>
+              <ion-input [(ngModel)]="email" placeholder="Digite seu email" type="email" required style="color:white"></ion-input>
+            </ion-item>
+          
+            <!-- Login -->
+            <ion-item class="custom-input" style="border-bottom: 1px solid white; ">
+              <ion-label position="stacked" color="light">Login</ion-label>
+              <ion-input [(ngModel)]="login" placeholder="Digite seu login" type="text" required style="color:white"></ion-input>
+            </ion-item>
+          
+            <!-- Senha -->
+            <ion-item class="custom-input" style="border-bottom: 1px solid white;">
+              <ion-label position="stacked" color="light">Senha</ion-label>
+              <ion-input [(ngModel)]="senha" placeholder="Digite sua senha" type="password" required style="color:white"></ion-input>
+            </ion-item>
+          
+            <!-- Confirmar Senha -->
+            <ion-item class="custom-input" style="border-bottom: 1px solid white;">
+              <ion-label position="stacked" color="light">Confirmar Senha</ion-label>
+              <ion-input [(ngModel)]="confirmarSenha" placeholder="Confirme sua senha" type="password" required style="color:white"></ion-input>
+            </ion-item>
+          </ion-list>
+          
+          <!-- Botão de Cadastro -->
+          <ion-button expand="block" class="login-button" (click)="cadastrar()">
+            Cadastrar
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
   </div>
 </ion-content>
+
+<ion-footer color="dark">
+  <ion-toolbar class="custom-footer-toolbar">
+    <ion-segment class="custom-segment">
+      <ion-segment-button value="home" routerLink="/login">
+        <ion-icon name="home-outline" color="light" routerLink="/login"></ion-icon>
+      </ion-segment-button>
+
+      <ion-segment-button value="add" routerLink="/cadastro">
+        <ion-icon name="person-add-outline" color="light" routerLink="/cadastro"></ion-icon>
+      </ion-segment-button>
+      
+      <ion-segment-button value="settings" routerLink="/login">
+        <ion-icon name="person-outline" color="light" routerLink="/login"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>

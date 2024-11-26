@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular'; // Importando o ToastController
 
 @Component({
   selector: 'app-adicionarcontas',
@@ -15,7 +16,7 @@ export class AdicionarcontasPage {
     'cash-outline', 'leaf-outline',
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private toastController: ToastController) {}
 
   // Abre o modal de seleção de ícones
   openIconModal() {
@@ -33,23 +34,34 @@ export class AdicionarcontasPage {
     this.closeIconModal();
   }
 
+  // Função para exibir o Toast
+  async showToast(message: string, color: 'success' | 'danger') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      color: color, // Cor do toast: sucesso (verde) ou erro (vermelho)
+      position: 'top' // Posição do toast
+    });
+    toast.present();
+  }
+
   adicionarConta(nome: any, saldo: any) {
     const nomeConta = String(nome || '').trim(); // Garante que seja uma string e remove espaços
     const saldoConta = parseFloat(String(saldo || '0')); // Converte o saldo para número
   
     // Validações
     if (!nomeConta) {
-      alert('Por favor, preencha o nome da conta.');
+      this.showToast('Por favor, preencha o nome da conta.', 'danger');
       return;
     }
   
     if (!this.selectedIcon) {
-      alert('Por favor, selecione um ícone.');
+      this.showToast('Por favor, selecione um ícone.', 'danger');
       return;
     }
   
     if (isNaN(saldoConta)) {
-      alert('Por favor, insira um saldo válido.');
+      this.showToast('Por favor, insira um saldo válido.', 'danger');
       return;
     }
   
@@ -64,6 +76,9 @@ export class AdicionarcontasPage {
     contas.push(novaConta);
     localStorage.setItem('contas', JSON.stringify(contas));
   
+    // Exibe um toast de sucesso
+    this.showToast('Conta adicionada com sucesso!', 'success');
+
     // Redirecionar para a página "conta"
     this.router.navigate(['/conta']).then(() => {
       // Após redirecionar, recarregar os dados de contas na página de destino

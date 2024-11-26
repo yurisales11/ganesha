@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="dark">
-    <ion-buttons slot="start" routerLink="/usuario">
+    <ion-buttons slot="start" routerLink="/teste">
       <ion-button>
         <ion-icon name="chevron-back-outline"></ion-icon>
       </ion-button>
@@ -18,11 +18,13 @@
   <div class="info-container">
     <ion-icon name="information-circle-outline"></ion-icon>
     <p>
-      Aqui estão todos os seus planejamentos. Você pode acompanhar o progresso e ajustar os valores.
+      Aqui estão todos os seus planejamentos. Você pode editá-los ou ajustá-los
+      conforme necessário.
       <a href="#">Saiba mais</a>
     </p>
   </div>
 
+  <!-- Lista de Planejamentos -->
   <ng-container *ngIf="planejamentos.length; else semPlanejamentos">
     <ion-card *ngFor="let planejamento of planejamentos; let i = index" class="account-card">
       <div class="account-header">
@@ -31,23 +33,32 @@
         </div>
         <div class="account-info">
           <h3>{{ planejamento.nome }}</h3>
+          <p>Saldo Atual: R$ {{ planejamento.saldoAtual | number: '1.2-2' }}</p>
+          <p>Objetivo: R$ {{ planejamento.saldoObjetivo | number: '1.2-2' }}</p>
+         
         </div>
       </div>
-      <div class="account-balance">
-        <span>Saldo atual: R$ {{ planejamento.saldoAtual | number: '1.2-2' }}</span>
-        <span>Objetivo: R$ {{ planejamento.saldoObjetivo | number: '1.2-2' }}</span>
-        <div class="plan-actions">
-          <ion-button (click)="editarPlanejamento(i)" fill="clear">
-            <ion-icon name="create-outline"></ion-icon>
-          </ion-button>
-          <ion-button (click)="excluirPlanejamento(i)" fill="clear">
-            <ion-icon name="trash-outline"></ion-icon>
-          </ion-button>
-        </div>
-      </div> 
+
+       <!-- Barra de Progresso -->
+  <div class="progress-container">
+    <ion-progress-bar [value]="planejamento.progresso / 100"></ion-progress-bar>
+    <div class="progress-text">
+      Restam R$ {{ planejamento.restante | number: '1.2-2' }}
+    </div>
+    <span>{{ planejamento.progresso | number: '1.0-0' }}%</span>
+  </div>
+
+      <!-- Ações -->
+      <div class="plan-actions">
+      
+        <ion-button (click)="excluirPlanejamento(i)" fill="clear">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </div>
     </ion-card>
   </ng-container>
 
+  <!-- Estado Vazio -->
   <ng-template #semPlanejamentos>
     <div class="empty-state">
       <p>Nenhum planejamento cadastrado ainda. Clique no botão "+" para adicionar um.</p>
