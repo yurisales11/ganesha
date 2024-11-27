@@ -1,6 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
-
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 
 interface Conta {
   nome: string;
@@ -13,7 +11,6 @@ interface Planejamento {
   progresso: number; // Porcentagem concluída
   restante: number; // Saldo restante para conclusão
 }
-
 
 interface Receita {
   nome: string;
@@ -40,63 +37,43 @@ export class TestePage implements OnInit, OnDestroy {
   planejamentos: Planejamento[] = [];
   saldoVisivel: boolean = true; // Inicialmente o saldo está visível
 
-
-  
   constructor(private cdRef: ChangeDetectorRef) {}
-
 
   ngOnInit() {
     this.carregarFotoAvatar();
     this.carregarContas();
     this.carregarReceitas();
-    this.carregarPlanejamentos(); // Carregar os planejamentos
+    this.carregarPlanejamentos();
     this.usuarioNome = localStorage.getItem('usuarioNome');
-    this.ouvirMudancasNoLocalStorage();
+    console.log('Nome do usuário carregado:', this.usuarioNome);  // Verifique se está carregando corretamente
+    this.cdRef.detectChanges(); // Força a detecção de mudanças, se necessário
+    this.ouvirMudancasNoLocalStorage(); // Inicia o listener para mudanças no localStorage
     this.calcularSaldoAtual();
   }
-  
-  // Método para carregar contas
-carregarContas() {
-  const contasSalvas = JSON.parse(localStorage.getItem('contas') || '[]');
-  this.contas = contasSalvas;
 
-  console.log('Contas Carregadas:', this.contas); // Verifique se as contas estão sendo carregadas corretamente
-
-  // Calcula o total de contas somando os saldos
-  this.totalContas = this.contas.reduce(
-    (total, conta) => total + (conta.saldo || 0),
-    0
-  );
-  console.log('Total Contas:', this.totalContas); // Verifique se o total de contas está correto
-
-  this.calcularSaldoAtual(); // Recalcular o saldo após carregar as contas
-}
-
-// Carregar receitas do localStorage
-carregarReceitas() {
-  const receitasSalvas = JSON.parse(localStorage.getItem('receitas') || '[]');
-  this.receitas = receitasSalvas;
-
-  console.log('Receitas Carregadas:', this.receitas); // Verifique se as receitas estão sendo carregadas corretamente
-
-  // Calcula o total de receitas somando os valores
-  this.totalReceitas = this.receitas.reduce(
-    (total, receita) => total + (receita.valor || 0),
-    0
-  );
-  console.log('Total Receitas:', this.totalReceitas); // Verifique se o total de receitas está correto
-
-  this.calcularSaldoAtual(); // Recalcular o saldo após carregar as receitas
-}
-
-// Método para calcular o saldo atual (receitas - despesas)
-calcularSaldoAtual() {
-  this.saldoAtual = this.totalReceitas - this.totalContas;
-  console.log('Saldo Atual:', this.saldoAtual);
-  this.cdRef.detectChanges(); // Força a detecção de mudanças
-}
   ngOnDestroy() {
-    window.removeEventListener('storage', this.atualizarAvatarAoMudarLocalStorage.bind(this));
+    // Remove o listener ao destruir o componente
+    window.removeEventListener('storage', this.atualizarDados.bind(this));
+  }
+
+  // Método para recarregar todos os dados
+  atualizarDados(event?: StorageEvent) {
+    if (event) {
+      console.log(`Alteração detectada no localStorage: ${event.key}`);
+    }
+    // Recarregar as informações do localStorage
+    this.carregarFotoAvatar();
+    this.carregarContas();
+    this.carregarReceitas();
+    this.carregarPlanejamentos();
+    this.calcularSaldoAtual();
+    this.cdRef.detectChanges(); // Garante que as alterações sejam refletidas na interface
+  }
+
+  // Método para ouvir mudanças no localStorage
+  ouvirMudancasNoLocalStorage() {
+    // Adiciona um listener para o evento de mudança no localStorage
+    window.addEventListener('storage', this.atualizarDados.bind(this));
   }
 
   carregarFotoAvatar() {
@@ -122,14 +99,45 @@ calcularSaldoAtual() {
     }
   }
 
-  ouvirMudancasNoLocalStorage() {
-    window.addEventListener('storage', this.atualizarAvatarAoMudarLocalStorage.bind(this));
+  // Método para carregar contas
+  carregarContas() {
+    const contasSalvas = JSON.parse(localStorage.getItem('contas') || '[]');
+    this.contas = contasSalvas;
+
+    console.log('Contas Carregadas:', this.contas); // Verifique se as contas estão sendo carregadas corretamente
+
+    // Calcula o total de contas somando os saldos
+    this.totalContas = this.contas.reduce(
+      (total, conta) => total + (conta.saldo || 0),
+      0
+    );
+    console.log('Total Contas:', this.totalContas); // Verifique se o total de contas está correto
+
+    this.calcularSaldoAtual(); // Recalcular o saldo após carregar as contas
   }
-  
-  atualizarAvatarAoMudarLocalStorage(event: StorageEvent) {
-    if (event.key === 'fotoAvatar') {
-      this.carregarFotoAvatar(); // Recarrega a foto se ela for alterada
-    }
+
+  // Carregar receitas do localStorage
+  carregarReceitas() {
+    const receitasSalvas = JSON.parse(localStorage.getItem('receitas') || '[]');
+    this.receitas = receitasSalvas;
+
+    console.log('Receitas Carregadas:', this.receitas); // Verifique se as receitas estão sendo carregadas corretamente
+
+    // Calcula o total de receitas somando os valores
+    this.totalReceitas = this.receitas.reduce(
+      (total, receita) => total + (receita.valor || 0),
+      0
+    );
+    console.log('Total Receitas:', this.totalReceitas); // Verifique se o total de receitas está correto
+
+    this.calcularSaldoAtual(); // Recalcular o saldo após carregar as receitas
+  }
+
+  // Método para calcular o saldo atual (receitas - despesas)
+  calcularSaldoAtual() {
+    this.saldoAtual = this.totalReceitas - this.totalContas;
+    console.log('Saldo Atual:', this.saldoAtual);
+    this.cdRef.detectChanges(); // Força a detecção de mudanças
   }
 
   // Funções para avançar e voltar meses
@@ -145,14 +153,14 @@ calcularSaldoAtual() {
   alternarVisibilidade() {
     this.saldoVisivel = !this.saldoVisivel;
   }
-  
+
   carregarPlanejamentos() {
     const planejamentosSalvos: Planejamento[] = JSON.parse(localStorage.getItem('planejamentos') || '[]');
     this.planejamentos = planejamentosSalvos.map((p: Planejamento) => ({
       ...p,
       restante: p.restante !== undefined ? p.restante : 0 // Garante que o campo "restante" exista
     }));
-  
+
     console.log('Planejamentos Carregados:', this.planejamentos); // Confirme os dados
   }
-}  
+}

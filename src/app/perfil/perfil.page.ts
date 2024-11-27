@@ -1,6 +1,6 @@
-
-import { AvatarService } from '../services/avatar.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-perfil',
@@ -8,47 +8,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./perfil.page.scss'],
 })
 export class PerfilPage implements OnInit {
+  constructor(private router: Router, private toastController: ToastController) {}
 
-  constructor() { }
-  ngOnInit() {
-    this.carregarFotoAvatar();
-    this.ouvirMudancasNoLocalStorage();
-    this.usuarioNome = localStorage.getItem('usuarioNome');
-  }
-
-  ngOnDestroy() {
-    window.removeEventListener('storage', this.atualizarAvatarAoMudarLocalStorage.bind(this));
-  }
-  // Campos do formulário
+  // Variáveis do formulário
   pais: string = '';
   telefone: string = '';
-  email: string = '';
-  senhaAtual: string = '';
-  novaSenha: string = '';
-  confirmarNovaSenha: string = '';
+  email: string | null = '';
   usuarioNome: string | null = '';
+  investorProfile: string | null = '';
+  fotoAvatar: string | null = '';
 
-
-  // Avatar
-  fotoAvatar: string | null = null;
-
-  // Visibilidade de troca de senha
-  showChangePassword = false;
-
-  
-
-
-  // Alternar visibilidade do campo de troca de senha
-  toggleChangePassword() {
-    this.showChangePassword = !this.showChangePassword;
+  ngOnInit() {
+    this.carregarFotoAvatar();
+    this.carregarDadosDoUsuario();
   }
 
-
+  // Carrega o avatar salvo no localStorage
   carregarFotoAvatar() {
-    const fotoSalva = localStorage.getItem('fotoAvatar');
-    this.fotoAvatar = fotoSalva;
+    this.fotoAvatar = localStorage.getItem('fotoAvatar');
   }
 
+  // Carrega dados do usuário no localStorage
+  carregarDadosDoUsuario() {
+    this.usuarioNome = localStorage.getItem('usuarioNome');
+    this.investorProfile = localStorage.getItem('investorProfile');
+    this.email = localStorage.getItem('usuarioEmail');
+    this.pais = localStorage.getItem('usuarioPais') || ''; // Caso não tenha, define como vazio
+    this.telefone = localStorage.getItem('usuarioTelefone') || ''; // Caso não tenha, define como vazio
+  }
+
+  // Atualiza o avatar
   selecionarImagem() {
     const input = document.getElementById('uploadAvatar') as HTMLInputElement;
     input.click();
@@ -67,29 +56,47 @@ export class PerfilPage implements OnInit {
     }
   }
 
-  ouvirMudancasNoLocalStorage() {
-    window.addEventListener('storage', this.atualizarAvatarAoMudarLocalStorage.bind(this));
-  }
-
-  atualizarAvatarAoMudarLocalStorage(event: StorageEvent) {
-    if (event.key === 'fotoAvatar') {
-      this.carregarFotoAvatar(); // Recarrega a foto se ela for alterada
+  // Salva as alterações no localStorage
+  async salvarAlteracoes() {
+    if (this.pais) {
+      localStorage.setItem('usuarioPais', this.pais);
     }
-  }
-
-  // Salvar Alterações
-  salvarAlteracoes() {
-    if (this.showChangePassword && this.novaSenha !== this.confirmarNovaSenha) {
-      alert('As novas senhas não coincidem!');
-      return;
+    if (this.telefone) {
+      localStorage.setItem('usuarioTelefone', this.telefone);
     }
 
-    // Lógica para salvar todas as alterações
-    console.log('País:', this.pais);
-    console.log('Telefone:', this.telefone);
-    console.log('Email:', this.email);
-    console.log('Senha Atual:', this.senhaAtual);
-    console.log('Nova Senha:', this.novaSenha);
-    alert('Alterações salvas com sucesso!');
+    // Exibe o toast de sucesso
+    this.showToast('Alterações salvas com sucesso!', 'success');
+  }
+
+  // Função para sair da conta (volta para a tela de login)
+  sairDaConta() {
+    this.router.navigate(['/login']); // Redireciona para a tela de login
+  }
+
+  // Função para exibir o toast
+  async showToast(message: string, color: 'success' | 'danger') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      color: color,
+      position: 'top',
+    });
+    toast.present();
+  }
+
+  // Função para formatar o número de telefone
+  formatarTelefone() {
+    // Remove todos os caracteres não numéricos
+    let telefoneFormatado = this.telefone.replace(/\D/g, '');
+
+    // Aplica a formatação desejada (XXX) XXXXX-XXXX
+    if (telefoneFormatado.length <= 2) {
+      this.telefone = telefoneFormatado;
+    } else if (telefoneFormatado.length <= 6) {
+      this.telefone = `(${telefoneFormatado.slice(0, 2)}) ${telefoneFormatado.slice(2)}`;
+    } else {
+      this.telefone = `(${telefoneFormatado.slice(0, 2)}) ${telefoneFormatado.slice(2, 7)}-${telefoneFormatado.slice(7, 11)}`;
+    }
   }
 }

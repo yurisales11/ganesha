@@ -6,16 +6,16 @@
           <!-- Lista de Inputs -->
           <ion-list lines="full" class="background-dark">
             
-            <!-- Login -->
+            <!-- Nome de Usuário -->
             <ion-item class="custom-input" style="border-bottom: 1px solid white;">
               <ion-label position="stacked" color="light">Usuário</ion-label>
-              <ion-input [(ngModel)]="login" placeholder="Digite seu login" type="text" required style="color:white"></ion-input>
+              <ion-input [(ngModel)]="usuarioNome" placeholder="Digite seu nome de usuário" type="text" required style="color:white"></ion-input>
             </ion-item>
           
             <!-- Senha -->
             <ion-item class="custom-input" style="border-bottom: 1px solid white;">
               <ion-label position="stacked" color="light">Senha</ion-label>
-              <ion-input [(ngModel)]="senha" placeholder="Digite sua senha" type="password" required style="color:white"></ion-input>
+              <ion-input [(ngModel)]="usuarioSenha" placeholder="Digite sua senha" type="password" required style="color:white"></ion-input>
             </ion-item>
 
           </ion-list>

@@ -8,31 +8,28 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
-  login: string = '';
-  senha: string = '';
+  usuarioNome: string = ''; // Altere para 'usuarioNome'
+  usuarioSenha: string = ''; // Altere para 'usuarioSenha'
   erro: string = ''; // Para armazenar mensagem de erro
 
   constructor(private router: Router, private toastController: ToastController) {}
 
   // Método de login
   async loginUser() {
-    // Recupera os dados dos usuários armazenados no localStorage
-    const usuarios: any[] = JSON.parse(localStorage.getItem('usuarios') || '[]');
+    // Recupera os dados do usuário armazenados no localStorage
+    const usuarioNome = localStorage.getItem('usuarioNome');
+    const usuarioSenha = localStorage.getItem('usuarioSenha');
 
-    // Busca o usuário no array de usuários
-    const usuario = usuarios.find(user => user.login === this.login);
-
-    // Verifica se o usuário foi encontrado
-    if (usuario) {
-      // Se a senha estiver correta
-      if (usuario.senha === this.senha) {
+    // Verifica se o nome de usuário e senha estão corretos
+    if (usuarioNome && usuarioSenha) {
+      if (this.usuarioNome === usuarioNome && this.usuarioSenha === usuarioSenha) {
         // Exibe uma mensagem de sucesso e redireciona para a página desejada
         this.showToast('Login bem-sucedido!', 'success');
-        this.router.navigate(['/teste']);
+        this.router.navigate(['/teste']); // Substitua '/teste' pela rota que deseja
       } else {
         // Se a senha estiver incorreta
         this.erro = 'Senha incorreta!';
-        this.showToast('Senha incorreta!', 'danger');
+        this.showToast('Senha ou login incorretos!', 'danger');
       }
     } else {
       // Se o usuário não for encontrado
@@ -47,7 +44,7 @@ export class LoginPage {
       message: message,
       duration: 2000,
       color: color,
-      position: 'top'
+      position: 'top',
     });
     toast.present();
   }

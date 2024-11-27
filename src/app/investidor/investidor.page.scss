@@ -1,0 +1,135 @@
+ion-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  ion-toolbar {
+    --background: #1d1d1d;
+    color: #fff;
+  }
+  
+  ion-content {
+    --background: #1d1d1d;
+    color: #fff;
+  }
+  
+  /* Cabeçalho */
+  .header {
+    display: flex;
+    flex-direction: column;
+    background: #31313167;
+    width: 100%;
+    border-radius: 25px;
+    height: 188px;
+    padding: 32px 20px;
+    justify-content: center;
+  }
+  
+  .bemvindo {
+    font-size: 30px;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .nome-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .iconnome {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Cards */
+  .cards {
+    padding: 20px;
+  }
+
+  .pagebackground {
+    background-image: url(/assets/perfilinvestidor.png);
+    background-size: cover; /* Para a imagem cobrir todo o espaço */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita repetição da imagem */
+    height: 100vh; /* Para garantir que a imagem cubra toda a altura da tela */
+    width: 100vw; /* Para garantir que a imagem cubra toda a largura da tela */
+  
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ 
+    padding: 10px;
+    width: 100%;
+    margin-top: 25%;
+    background: #31313100;
+    border-radius: 20px;
+    border: 1px solid #33333300;
+    color: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Botão de Continuar */
+  ion-button {
+    margin-top: 20px;
+  }
+  
+
+  .custom-select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    --background: transparent; /* Fundo transparente */
+    --color: #fff; /* Texto em branco */
+    --placeholder-color: rgb(255, 255, 255); /* Cor do texto do placeholder */
+    --padding-start: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borda sutil */
+    border-radius: 10px; /* Bordas arredondadas */
+  }
+  
+  ion-select {
+    --background: transparent; /* Fundo transparente */
+    --color: #e65454; /* Texto em branco */
+    --placeholder-color: rgb(252, 252, 252); /* Placeholder em branco translúcido */
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 36%;
+  }
+  
+  ion-label {
+    color: #fff; /* Cor do texto do rótulo */
+  }
+  
+  ion-select::part(icon) {
+    color: #fff; /* Ícone de seta branca */
+  }
+  
+  .custom-select:hover,
+  .custom-select:focus-within {
+    border-color: #fff; /* Borda branca ao passar o mouse ou focar */
+  }
+
+  .ion-text-center{width: 100%;
+
+display: flex;
+justify-content: center;}
+
+.ion-text-center ion-button{width: 80%;
+    border-radius: 50px !important;
+
+}
+  
+
+  

@@ -47,72 +47,72 @@ export class ReceitasPage implements OnInit {
     toast.present();
   }
 
-  adicionarReceita() {
-    const nome = prompt('Digite o nome da receita');
-    const valor = prompt('Digite o valor da receita');
-    const categoria = prompt('Digite a categoria da receita');
+  // Método para adicionar uma nova receita
+adicionarReceita() {
+  const nome = prompt('Digite o nome da receita');
+  const valor = prompt('Digite o valor da receita');
+  const categoria = prompt('Digite a categoria da receita');
 
-    if (nome && valor && categoria) {
-      const novaReceita = {
-        nome: nome,
-        valor: parseFloat(valor),
-        categoria: categoria
-      };
+  if (nome && valor && categoria) {
+    const novaReceita = {
+      nome: nome,
+      valor: parseFloat(valor),
+      categoria: categoria
+    };
 
-      this.receitas.push(novaReceita);
-      localStorage.setItem('receitas', JSON.stringify(this.receitas));
+    this.receitas.push(novaReceita);
+    localStorage.setItem('receitas', JSON.stringify(this.receitas));
 
-      // Atualiza o total de receitas
-      this.calcularTotal();
+    // Atualiza a lista (nova referência)
+    this.receitas = [...this.receitas]; // Cria nova referência do array
+    this.calcularTotal();
 
-      // Exibe o toast de sucesso
-      this.showToast('Receita adicionada com sucesso!', 'success');
-    } else {
-      // Exibe o toast de erro
-      this.showToast('Por favor, preencha todos os campos!', 'danger');
-    }
+    this.showToast('Receita adicionada com sucesso!', 'success');
+  } else {
+    this.showToast('Por favor, preencha todos os campos!', 'danger');
   }
+}
 
-  editarReceita(index: number) {
-    const receita = this.receitas[index];
-    const novoNome = prompt('Digite o novo nome da receita', receita.nome);
-    const novoValor = prompt('Digite o novo valor da receita', receita.valor.toString());
-    const novaCategoria = prompt('Digite a nova categoria da receita', receita.categoria);
+// Método para editar uma receita
+editarReceita(index: number) {
+  const receita = this.receitas[index];
+  const novoNome = prompt('Digite o novo nome da receita', receita.nome);
+  const novoValor = prompt('Digite o novo valor da receita', receita.valor.toString());
+  const novaCategoria = prompt('Digite a nova categoria da receita', receita.categoria);
 
-    if (novoNome && novoValor && novaCategoria) {
-      receita.nome = novoNome;
-      receita.valor = parseFloat(novoValor);
-      receita.categoria = novaCategoria;
+  if (novoNome && novoValor && novaCategoria) {
+    receita.nome = novoNome;
+    receita.valor = parseFloat(novoValor);
+    receita.categoria = novaCategoria;
 
-      this.receitas[index] = receita;
-      localStorage.setItem('receitas', JSON.stringify(this.receitas));
+    this.receitas[index] = receita;
+    localStorage.setItem('receitas', JSON.stringify(this.receitas));
 
-      // Atualiza o total de receitas
-      this.calcularTotal();
+    // Atualiza a lista (nova referência)
+    this.receitas = [...this.receitas]; // Cria nova referência do array
+    this.calcularTotal();
 
-      // Exibe o toast de sucesso
-      this.showToast('Receita atualizada com sucesso!', 'success');
-    } else {
-      // Exibe o toast de erro
-      this.showToast('Por favor, preencha todos os campos!', 'danger');
-    }
+    this.showToast('Receita atualizada com sucesso!', 'success');
+  } else {
+    this.showToast('Por favor, preencha todos os campos!', 'danger');
   }
+}
 
-  excluirReceita(index: number) {
-    const confirmar = confirm('Tem certeza que deseja excluir esta receita?');
-    
-    if (confirmar) {
-      this.receitas.splice(index, 1);
-      localStorage.setItem('receitas', JSON.stringify(this.receitas));
+// Método para excluir uma receita
+excluirReceita(index: number) {
+  const confirmar = confirm('Tem certeza que deseja excluir esta receita?');
+  
+  if (confirmar) {
+    this.receitas.splice(index, 1);
+    localStorage.setItem('receitas', JSON.stringify(this.receitas));
 
-      // Atualiza o total de receitas
-      this.calcularTotal();
+    // Atualiza a lista (nova referência)
+    this.receitas = [...this.receitas]; // Cria nova referência do array
+    this.calcularTotal();
 
-      // Exibe o toast de sucesso
-      this.showToast('Receita excluída com sucesso!', 'success');
-    } else {
-      // Exibe o toast de cancelamento
-      this.showToast('Exclusão cancelada.', 'danger');
-    }
+    this.showToast('Receita excluída com sucesso!', 'success');
+  } else {
+    this.showToast('Exclusão cancelada.', 'danger');
   }
+}
 }

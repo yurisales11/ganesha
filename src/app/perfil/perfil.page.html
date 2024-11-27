@@ -1,5 +1,3 @@
-
-
 <ion-content class="background-dark">
   <div class="pagebackground">
     <div class="settings-container">
@@ -15,57 +13,67 @@
           style="display: none;"
           (change)="atualizarAvatar($event)"
         />
-         <div class="profile-info">
-        <!-- Nome do Usuário - Bem-vindo + nome do usuário -->
-      <ion-label>
-      <h2> {{ usuarioNome || 'Usuário' }}</h2>
-      </ion-label>
+        <div class="profile-info">
+          <!-- Nome do Usuário -->
+          <ion-label>
+            <h2> {{ usuarioNome || 'Usuário' }}</h2>
+          </ion-label>
+          <!-- Perfil de Investidor -->
+          <span> {{ investorProfile }} </span>
         </div>
-        </div>
-     
-      
+      </div>
 
-      <ion-list lines="full" class = background-dark>
+      <ion-list lines="full" class="background-dark">
         <!-- País -->
-        <ion-item class="custom-input " >
+        <ion-item class="custom-input">
           <ion-label position="stacked">País</ion-label>
           <ion-input [(ngModel)]="pais" placeholder="Digite seu país"></ion-input>
         </ion-item>
 
-        <!-- Telefone -->
-        <ion-item class="custom-input"  >
-          <ion-label position="stacked">Telefone</ion-label>
-          <ion-input [(ngModel)]="telefone" type="tel" placeholder="Digite seu telefone"></ion-input>
-        </ion-item>
-
+      <!-- Telefone -->
+<ion-item class="custom-input">
+  <ion-label position="stacked">Telefone</ion-label>
+  <ion-input
+    [(ngModel)]="telefone"
+    (ngModelChange)="formatarTelefone()"
+    type="tel"
+    placeholder="Digite seu telefone"
+  ></ion-input>
+</ion-item>
         <!-- Email -->
-        <ion-item class="custom-input" >
+        <ion-item class="custom-input">
           <ion-label position="stacked">Email</ion-label>
           <ion-input [(ngModel)]="email" type="email" placeholder="Digite seu email"></ion-input>
         </ion-item>
       </ion-list>
 
-      <!-- Troca de Senha -->
-      <ion-item class="custom-input" routerLink ="/home" >
-        <ion-label routerLink ="/home">Sair</ion-label>
-        <ion-icon slot="end" name="exit" color ="light"></ion-icon>
-      </ion-item>
-     
+      <div class = buttons>
+
+        <!-- Botão Salvar Alterações -->
+        <ion-button
+          expand="block"
+          class="buttonuser"
+          fill="outline"
+          (click)="salvarAlteracoes()"
+        >
+          Salvar alterações
+        </ion-button>
+      
+        <ion-button
+        expand="block"
+        class="buttonuser"
+        fill="outline"
+        (click)="sairDaConta()"
+      >
+       Sair da conta
+      </ion-button>
+      
+      </div>
     </div>
   </div>
-
-  <!-- Botão Salvar Alterações -->
-  <ion-button
-    expand="block"
-    class="buttonuser"
-    fill="outline"
-    (click)="salvarAlteracoes()"
-  >
-    Salvar alterações
-  </ion-button>
+  
+  
 </ion-content>
-
-
 
 <ion-footer color = dark>
   <ion-toolbar class="custom-footer-toolbar">

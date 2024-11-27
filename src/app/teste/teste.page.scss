@@ -195,6 +195,8 @@ ion-content {
     .custom-progress-bar {
       height: 25px;
       border-radius: 8px;
+      margin-left: 18px;
+  
     }
     
     .progress-text {
@@ -208,4 +210,15 @@ ion-content {
     
     .account-info{display: flex;
     flex-direction: column;
-  gap: 8px;}
+    gap: 8px;
+  
+    }
+
+    .account-info span{
+      margin-left: 20px;
+      font-size: 16px;
+      font-weight: 600;
+
+    }
+
+    .nome-container{padding-top: 10px;}

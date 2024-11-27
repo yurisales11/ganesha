@@ -69,6 +69,10 @@ const routes: Routes = [
     path: 'adicionarreceitas',
     loadChildren: () => import('./adicionarreceitas/adicionarreceitas.module').then( m => m.AdicionarreceitasPageModule)
   },
+  {
+    path: 'investidor',
+    loadChildren: () => import('./investidor/investidor.module').then( m => m.InvestidorPageModule)
+  },
 ];
 
 @NgModule({

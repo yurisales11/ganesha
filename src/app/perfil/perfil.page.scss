@@ -10,22 +10,34 @@
 
  
   .profile-section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    margin-bottom: 10px;
+ 
+
+
+
 
 
     ion-avatar {
       width: 100px;
       height: 100px;
-      margin: 75px auto;
+      margin: 50px 10px 10px 10px;
       cursor: pointer; 
     }
 
     .profile-info {
       margin-top: 0px;
 
+      span{
+        color: white;
+        font-size: 1rem;
+      }
+
       h2 {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         color: white;
       }
     }
@@ -55,7 +67,7 @@
 }
 
 .buttonuser {
- 
+  width: 80%;
   --border-color: white;
   --color: white;
 }
@@ -176,13 +188,12 @@ ion-card-title {
 /* Espaçamento entre os inputs */
 }
 
-.login-button {
-  --background:#29b63e;   /* Cor do botão (azul padrão do Ionic) */
-  --color: #ffffff; /* Texto branco no botão */
-  --border-radius: 8px;
-  font-size: 1.2rem;
-  margin-top: 5%;
-  text-transform: none;
-}
+
+.buttons{
+  display: flex;
+flex-direction: column;
+gap: 10px;
+align-items: center;
+justify-content: center;}
 
 
