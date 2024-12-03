@@ -1,134 +1,137 @@
 <ion-header>
-  <ion-toolbar style="padding: 10px;">
-    <ion-item>
-      <!-- Avatar com upload de imagem -->
-      <ion-avatar aria-hidden="true" slot="start" (click)="selecionarImagem()">
-        <img alt="Avatar" [src]="fotoAvatar || 'https://github.com/shadcn.png'" />
-      </ion-avatar>
-
-      <!-- Input invisível para upload de imagem -->
-      <input
-        type="file"
-        accept="image/*"
-        id="uploadAvatar"
-        style="display: none;"
-        (change)="atualizarAvatar($event)"/>
-
-      <!-- Nome do Usuário - Bem-vindo + nome do usuário -->
-      <ion-label>
-        Bem-vindo, {{ usuarioNome || 'Usuário' }}!
-      </ion-label>
-
-      <!-- Ícone de notificações -->
-      <ion-buttons slot="end" style="padding: 0px 20px;">
-        <ion-icon name="notifications-outline" style="font-size: 25px;" routerLink="/perfil"></ion-icon>
-      </ion-buttons>
-    </ion-item>
+  <ion-toolbar color="dark">
+    <ion-title>Financial Dashboard</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class = "containerbody background-dark">
+<ion-content color="dark">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-item lines="none">
+              <ion-avatar slot="start">
+                <img src="https://storage.googleapis.com/a1aa/image/tp4haoSDBlohMJLCTqTX6K4hNpvh8JBApnOdZpQr3xnLEY9E.jpg" />
+              </ion-avatar>
+              <ion-label>
+                <h2>Yuri Sales</h2>
+                <p>Julho</p>
+              </ion-label>
+              <ion-icon name="settings-outline" slot="end"></ion-icon>
+            </ion-item>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
 
-  
+    <ion-row>
+      <ion-col size="6">
+        <ion-card color="tertiary">
+          <ion-card-header>
+            <ion-card-title>R$ 204,00</ion-card-title>
+            <ion-card-subtitle>Saldo atual</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card color="secondary">
+          <ion-card-header>
+            <ion-card-title>R$ 124,00</ion-card-title>
+            <ion-card-subtitle>Saldo previsto</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle>Saldo geral</ion-card-subtitle>
-      <div class="saldo-container">
-        <span class="saldo">
-          {{ isSaldoVisivel ? (saldoGeral | currency:'BRL':'symbol') : '****' }}
-        </span>
-        <ion-icon
-          name="{{ isSaldoVisivel ? 'eye-off-outline' : 'eye-outline' }}"
-          class="icon-visibility"
-          (click)="alternarVisibilidadeSaldo()"
-        ></ion-icon>
-      </div>
-      <ion-card-subtitle>Minhas contas</ion-card-subtitle>
-    </ion-card-header>
-  
-    <ion-card-content>
-      <div class="account-item">
-        <ion-icon id="wallet" name="wallet-outline"></ion-icon>
-        <div class="summary-row">
-          <span>Total de Contas: {{ totalContas }}</span>
-        
-        </div>
-       
-        </div>
-      <ion-button expand="block" class = buttonuser fill="outline"  routerLink="/conta">Gerenciar contas</ion-button>
-    </ion-card-content>
-  </ion-card>
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              <ion-icon name="arrow-down-circle" color="danger"></ion-icon>
+              Despesas
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>R$ 543,50</p>
+            <p><ion-text color="danger">R$ 52,00 Mercado</ion-text></p>
+            <p><ion-text color="danger">R$ 100,00 Janta</ion-text></p>
+            <p><ion-text color="danger">R$ 105,50 Jaqueta</ion-text></p>
+            <p><ion-text color="danger">R$ 150,00 Almoço</ion-text></p>
+            <p><ion-text color="danger">R$ 7,50 Café na cantina</ion-text></p>
+            <p><ion-text color="danger">mais...</ion-text></p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
 
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              <ion-icon name="arrow-up-circle" color="success"></ion-icon>
+              Receitas
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>R$ 1020,50</p>
+            <p><ion-text color="success">R$ 20,50 Racha</ion-text></p>
+            <p><ion-text color="success">R$ 300,00 Pais</ion-text></p>
+            <p><ion-text color="success">R$ 700,00 Bolsa BIA</ion-text></p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle>Planejamentos</ion-card-subtitle>
-    </ion-card-header>
-  
-    <ion-card-content>
-      <div class="account-item">
-        <ion-icon id="wallet" name="airplane-outline"></ion-icon>
-        <div class="infoaccount">
-          <div class="planejamento">
-            <h3>Total de Planejamentos: {{ totalPlanejamentos }}</h3>
-          </div>
-        </div>
-      </div>
-      <ion-button expand="block" color="success" fill="outline" routerLink="/planejamentos">
-        Gerenciar planejamentos
-      </ion-button>
-    </ion-card-content>
-  </ion-card>
-  
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Planejamento</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="progress-bar">
+              <h4>Educação</h4>
+              <ion-progress-bar value="0.9" color="warning"></ion-progress-bar>
+            </div>
+            <div class="progress-bar">
+              <h4>Lazer</h4>
+              <ion-progress-bar value="0.5" color="danger"></ion-progress-bar>
+            </div>
+            <div class="progress-bar">
+              <h4>Alimentação</h4>
+              <ion-progress-bar value="0.8" color="primary"></ion-progress-bar>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle>Fique por dentro das informações</ion-card-subtitle>
-     
-    
-    </ion-card-header>
-  
-    <ion-card-content>
-      <div class="account-item">
-        <ion-icon id="wallet" name="document-text"></ion-icon>
-        <div class="infoaccount">
-          <div class = planejamento>
-            <h3>Confira as novidades do mercado</h3>
-           
-          </div>
-        
-        </div>
-      </div>
-      <ion-button expand="block" color="success" fill="outline"  routerLink="/artigos">Conferir Novidades</ion-button>
-    </ion-card-content>
-  </ion-card>
-
-
-
-
-  
-  
-
- 
-  
-
- 
-  <ion-footer color = dark>
-    <ion-toolbar class="custom-footer-toolbar">
-      <ion-segment class="custom-segment">
-        <ion-segment-button value="home" routerLink ="/usuario">
-          <ion-icon name="home-outline" color = light routerLink ="/usuario"></ion-icon>
-        </ion-segment-button>
-  
-        <ion-segment-button value="add" routerLink ="/artigos">
-          <ion-icon name="add-circle-outline"color = light routerLink ="/artigos"></ion-icon>
-        </ion-segment-button>
-        
-        <ion-segment-button value="settings" routerLink ="/perfil">
-          <ion-icon name="settings-outline"color = light  routerLink ="/perfil"></ion-icon>
-        </ion-segment-button>
-      </ion-segment>
-    </ion-toolbar>
-  </ion-footer>
-  
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Gráficos</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-segment value="dia">
+              <ion-segment-button value="dia">Dia</ion-segment-button>
+              <ion-segment-button value="sem">Sem</ion-segment-button>
+              <ion-segment-button value="mes">Mês</ion-segment-button>
+            </ion-segment>
+            <div class="chart">
+              <h4>Receitas</h4>
+              <p>R$ 41,50</p>
+              <img
+                src="https://storage.googleapis.com/a1aa/image/QT3B5oDwB7LEL5DegfrecZE6wtsSwTDEd6d4L5cMrgkbhArnA.jpg"
+                alt="Gráfico de receitas"
+              />
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

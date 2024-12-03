@@ -17,6 +17,14 @@ interface Receita {
   valor: number;
   icone?: string;
 }
+interface Artigo {
+  id: number;
+  titulo: string;
+  resumo: string;
+  imagemUrl: string; // URL da imagem do artigo
+  title: string;
+  url: string; // URL para redirecionamento
+}
 
 @Component({
   selector: 'app-teste',
@@ -36,8 +44,15 @@ export class TestePage implements OnInit, OnDestroy {
   receitas: Receita[] = []; // Armazena receitas do localStorage
   planejamentos: Planejamento[] = [];
   saldoVisivel: boolean = true; // Inicialmente o saldo está visível
+  artigos: Artigo[] = []; // Para armazenar os artigos
+
+  
 
   constructor(private cdRef: ChangeDetectorRef) {}
+
+  abrirArtigo(url: string) {
+    window.open(url, '_blank');  // Abre a URL em uma nova aba
+  }
 
   ngOnInit() {
     this.carregarFotoAvatar();
@@ -49,12 +64,58 @@ export class TestePage implements OnInit, OnDestroy {
     this.cdRef.detectChanges(); // Força a detecção de mudanças, se necessário
     this.ouvirMudancasNoLocalStorage(); // Inicia o listener para mudanças no localStorage
     this.calcularSaldoAtual();
+    this.carregarArtigos();
   }
+
+  
+  
 
   ngOnDestroy() {
     // Remove o listener ao destruir o componente
     window.removeEventListener('storage', this.atualizarDados.bind(this));
   }
+
+
+  carregarArtigos() {
+    this.artigos = [
+      {
+        title: 'Dica 01',
+        id: 1,
+        titulo: 'Dicas de Finanças Pessoais',
+        resumo: 'Aprenda como gerenciar melhor suas finanças com estas dicas incríveis.',
+        imagemUrl: 'assets/1.png',
+        url: 'https://www.hostinger.com.br/tutoriais/como-ganhar-dinheiro-na-internet' // URL do artigo
+      },
+      {
+        title: 'Dica 02',
+        id: 2,
+        titulo: 'Os segredos para o sucesso',
+        resumo: 'Descubra os segredos para sua liberdade financeira.',
+        imagemUrl: 'assets/2.png',
+        url: 'https://www.agendor.com.br/blog/qual-o-segredo-do-sucesso/' // URL do artigo
+      },
+      {
+        title: 'Dica 03',
+        id: 3,
+        titulo: 'Mentalidade de Investidor',
+        resumo: 'Aprenda os conceitos que vem mudando a mente dos investidores.',
+        imagemUrl: 'assets/3.png',
+        url: 'https://meusucesso.com/noticias/mentalidade-de-um-investidor-de-sucesso-7497/' // URL do artigo
+      },
+      {
+        title: 'Dica 04',
+        id: 4,
+        titulo: 'Novidades Tecnológicas',
+        resumo: 'Fique por dentro das novidades do mundo tecnológico.',
+        imagemUrl: 'assets/4.png',
+        url: 'https://ascenty.com/blog/artigos/financas-4-0/' // URL do artigo
+      }
+    ];
+  }
+
+  // Método para abrir detalhes do artigo
+  
+
 
   // Método para recarregar todos os dados
   atualizarDados(event?: StorageEvent) {

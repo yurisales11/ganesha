@@ -17,10 +17,45 @@ export class PerfilPage implements OnInit {
   usuarioNome: string | null = '';
   investorProfile: string | null = '';
   fotoAvatar: string | null = '';
+// Variáveis do formulário
+
+usuarioNomeEditando: string | null = ''; // Nome durante a edição
+editandoNome: boolean = false; // Controle de edição do nome
+
+
+  // Alterna entre editar e salvar o nome
+   // Alterna entre editar e salvar o nome
+   toggleEditarNome(salvar: boolean = false) {
+    if (salvar) {
+      // Verifica se o nome foi alterado antes de salvar
+      if (this.usuarioNomeEditando && this.usuarioNomeEditando !== this.usuarioNome) {
+        this.usuarioNome = this.usuarioNomeEditando;
+        localStorage.setItem('usuarioNome', this.usuarioNome);
+        this.showToast('Nome atualizado com sucesso!', 'success');
+      } else if (!this.usuarioNomeEditando) {
+        this.showToast('Por favor, insira um nome válido.', 'danger');
+      }
+    }
+    this.editandoNome = !this.editandoNome;
+  }
+
+    // Cancela a edição e restaura o nome original
+    cancelarEdicao() {
+      this.usuarioNomeEditando = this.usuarioNome; // Restaura o nome original
+      this.editandoNome = false; // Sai do modo de edição
+    }
+
+ 
+  
+
+
+  // Função para exibir o toast (já existe no seu código)
+
 
   ngOnInit() {
     this.carregarFotoAvatar();
     this.carregarDadosDoUsuario();
+ 
   }
 
   // Carrega o avatar salvo no localStorage

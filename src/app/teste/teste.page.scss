@@ -27,6 +27,15 @@ ion-content {
     height: 188px;
     padding: 32px 20px;
     justify-content: center; /* Alinha o conteúdo no centro verticalmente */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5); /* Adicione um leve sombreamento para profundidade */
+
+    h2{margin-left: 20px;}
+
+    h1{margin-left: 20px;}
+
+    span{margin-left: 20px;}
+
+
 
   }
 
@@ -176,11 +185,11 @@ ion-content {
         transition: color 0.3s ease-in-out; // Smooth color transition
       }
     
-      &.positivo h2 {
+      &.positivo h3 {
         color: #12A454// Use a shade of green for positive values
       }
     
-      &.negativo h2 {
+      &.negativo h3 {
         color: #E83F5B; // Use a shade of red for negative values
       }
     }
@@ -222,3 +231,57 @@ ion-content {
     }
 
     .nome-container{padding-top: 10px;}
+
+
+    .artigo-card {
+      margin: 16px;
+      padding: 16px;
+      background: #1d1d1d;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .artigo-card-imagem {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    
+    .artigo-card-img {
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+      border-radius: 8px;
+     
+    }
+    
+    .artigo-card-conteudo {
+      text-align: left;
+      margin-bottom: 16px;
+    }
+    
+    .artigo-card-titulo {
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+      
+      margin: 0;
+      color: #ffffff;
+    }
+    
+    .artigo-card-resumo {
+      font-size: 1rem;
+      color: #d0d0d0;
+      text-align: center;
+    }
+    
+    .artigo-card-botao {
+      text-align: center;
+    }
+    
+    .artigo-card-botao ion-button {
+      --background: #007bff;
+      --color: white;
+      --box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+      font-weight: bold;
+    }
+    

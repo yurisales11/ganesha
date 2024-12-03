@@ -30,6 +30,11 @@
 
     .profile-info {
       margin-top: 0px;
+  
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
 
       span{
         color: white;
@@ -39,6 +44,7 @@
       h2 {
         font-size: 1.4rem;
         color: white;
+        margin-left: 35px;
       }
     }
   }
@@ -195,5 +201,7 @@ flex-direction: column;
 gap: 10px;
 align-items: center;
 justify-content: center;}
+
+
 
 

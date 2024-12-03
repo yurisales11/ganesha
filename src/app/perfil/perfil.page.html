@@ -14,13 +14,37 @@
           (change)="atualizarAvatar($event)"
         />
         <div class="profile-info">
-          <!-- Nome do Usuário -->
-          <ion-label>
-            <h2> {{ usuarioNome || 'Usuário' }}</h2>
-          </ion-label>
+          <ion-item class="custom-input">
+            <!-- Nome do Usuário -->
+            <h2 position="stacked" *ngIf="!editandoNome">{{ usuarioNome || 'Usuário' }}</h2>
+            <ion-input
+              *ngIf="editandoNome"
+              [(ngModel)]="usuarioNomeEditando"
+              placeholder="Digite seu nome"
+            ></ion-input>
+            <ion-icon
+              name="{{ editandoNome ? 'checkmark-outline' : 'create-outline' }}"
+              slot="end"
+              (click)="toggleEditarNome(true)"
+              class="edit-icon"
+              color="light"
+            ></ion-icon>
+            <ion-icon
+              *ngIf="editandoNome"
+              name="close-outline"
+              slot="end"
+              (click)="cancelarEdicao()"
+              class="cancel-icon"
+              color="light"
+            ></ion-icon>
+          </ion-item>
           <!-- Perfil de Investidor -->
           <span> {{ investorProfile }} </span>
         </div>
+        
+        
+        
+
       </div>
 
       <ion-list lines="full" class="background-dark">
